@@ -25,7 +25,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import formation.sopra.formationSrpingBoot.controllers.rest.Views;
-import formation.sopra.formationSrpingBoot.validators.FormationDansLeFutur;
+import formation.sopra.formationSrpingBoot.validators.DateDansLeFutur;
 
 @Entity
 @SequenceGenerator(name = "seqFormation", sequenceName = "seq_formation", initialValue = 100, allocationSize = 1)
@@ -43,7 +43,7 @@ public class Formation {
 	private String nom;
 	@JsonView(Views.Common.class)
 	@Column(name = "date_formation")
-	@FormationDansLeFutur
+	@DateDansLeFutur
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateFormation;
 	@ManyToOne

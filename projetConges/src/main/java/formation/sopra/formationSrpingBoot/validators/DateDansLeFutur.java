@@ -8,10 +8,10 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = FormationDansLeFuturValidator.class)
+@Constraint(validatedBy = DateDansLeFuturValidator.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface FormationDansLeFutur {
+public @interface DateDansLeFutur {
 	String message() default "la formation doit avoir une date dans le futur";
 
 	Class<?>[] groups() default {};
