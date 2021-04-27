@@ -49,8 +49,25 @@ public class Conge {
 
 	// ------------------ Getters & Setters ---------------------//
 	
+	
 	public TypeConge getTypeConge() {
 		return typeConge;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Employe getDemandeur() {
+		return demandeur;
+	}
+
+	public void setDemandeur(Employe demandeur) {
+		this.demandeur = demandeur;
 	}
 
 	public void setTypeConge(TypeConge typeConge) {

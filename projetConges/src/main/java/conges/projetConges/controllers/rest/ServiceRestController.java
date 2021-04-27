@@ -26,74 +26,74 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import conges.projetConges.entities.Conge;
-import conges.projetConges.exceptions.CongeInvalidException;
-import conges.projetConges.repositories.CongeRepository;
+import conges.projetConges.entities.Service;
+import conges.projetConges.exceptions.EmployeInvalidException;
+import conges.projetConges.exceptions.ServiceInvalidException;
+import conges.projetConges.repositories.ServiceRepository;
 
 @RestController
-@RequestMapping("/api/conge")
+@RequestMapping("/api/service")
 @CrossOrigin(origins="*")
-public class CongeRestController {
-
+public class ServiceRestController {
+	
 	@Autowired
-	private CongeRepository congeRepository;
+	private ServiceRepository serviceRepository;
 	
 	@GetMapping("")
-	public ResponseEntity<List<Conge>> allConges(){
-		return new ResponseEntity<List<Conge>>(congeRepository.findAll(),HttpStatus.OK);
+	public ResponseEntity<List<Service>> allServices(){
+		return new ResponseEntity<List<Service>>(serviceRepository.findAll(),HttpStatus.OK);
 	}
 	
 	//Create
 	@PostMapping("")
-	public ResponseEntity<Conge> createEmploye(@Valid @RequestBody Conge conge, BindingResult br, 
+	public ResponseEntity<Service> createEmploye(@Valid @RequestBody Service service, BindingResult br, 
 				UriComponentsBuilder uCB){
 		if (br.hasErrors()) {
-			throw new CongeInvalidException();
+			throw new ServiceInvalidException();
 		}
-		conge = congeRepository.save(conge);
-		URI uri = uCB.path("/api/employe/{id}").buildAndExpand(conge.getId()).toUri();
+		service = serviceRepository.save(service);
+		URI uri = uCB.path("/api/employe/{id}").buildAndExpand(service.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
-		return new ResponseEntity<Conge>(conge, headers, HttpStatus.CREATED);
+		return new ResponseEntity<Service>(service, headers, HttpStatus.CREATED);
 	}
 	
 	//findById
-	@JsonView(Views.Common.class)
 	@GetMapping("/{id}")
-	public ResponseEntity<Conge> getById(@PathVariable("id") Integer id){
-		Optional<Conge> opt = congeRepository.findById(id);
+	public ResponseEntity<Service> getById(@PathVariable("id") Integer id){
+		Optional<Service> opt = serviceRepository.findById(id);
 		if(!opt.isPresent()) {
-			throw new CongeInvalidException();
+			throw new ServiceInvalidException();
 		}
-		return new ResponseEntity<Conge>(opt.get(), HttpStatus.OK);
+		return new ResponseEntity<Service>(opt.get(), HttpStatus.OK);
 	}
 	
 	//Delete
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable("id") Integer id) {
-		Optional<Conge> opt = congeRepository.findById(id);
+		Optional<Service> opt = serviceRepository.findById(id);
 		if(opt.isPresent()) {
-			congeRepository.deleteById(id);
+			serviceRepository.deleteById(id);
 		} else {
-		throw new CongeInvalidException();	
+		throw new ServiceInvalidException();	
 		}
 	}
 	
 	//Update
-	@JsonView(Views.Common.class)
 	@PutMapping("/{id}")
-	public ResponseEntity<Conge> update(@RequestBody Conge conge, BindingResult br, @PathVariable("id") Integer id){
+	public ResponseEntity<Service> update(@RequestBody Service service, BindingResult br, @PathVariable("id") Integer id){
 		if (br.hasErrors()) {
-			throw new CongeInvalidException();
+			throw new ServiceInvalidException();
 		}
-		Optional<Conge> opt = congeRepository.findById(id);
+		Optional<Service> opt = serviceRepository.findById(id);
 		if (!opt.isPresent()) {
-			Conge congeEnBase = opt.get();
-			conge.setVersion(congeEnBase.getVersion());
-			conge.setId(id);
-			return new ResponseEntity<Conge>(congeRepository.save(conge), HttpStatus.OK);
+			Service serviceEnBase = opt.get();
+			service.setVersion(serviceEnBase.getVersion());
+			service.setId(id);
+			return new ResponseEntity<Service>(serviceRepository.save(service), HttpStatus.OK);
 		} else {
-			throw new CongeInvalidException();
+			throw new ServiceInvalidException();
 		}
 	}
 }

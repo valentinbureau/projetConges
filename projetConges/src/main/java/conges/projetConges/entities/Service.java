@@ -11,6 +11,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
@@ -33,6 +34,9 @@ public class Service {
 	@OneToMany(mappedBy = "service")
 	private Set<Employe> listeEmployes;
 
+	@Version
+	private int version;
+	
 	public Service() {
 	}
 	
@@ -68,6 +72,14 @@ public class Service {
 
 	public void setListeEmployes(Set<Employe> listeEmployes) {
 		this.listeEmployes = listeEmployes;
+	}
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	@Override

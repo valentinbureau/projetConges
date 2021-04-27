@@ -88,8 +88,8 @@ public class EmployeRestController {
 		}
 		Optional<Employe> opt = employeRepository.findById(id);
 		if (!opt.isPresent()) {
-			Employe formateurEnBase = opt.get();
-			employe.setVersion(formateurEnBase.getVersion());
+			Employe employeEnBase = opt.get();
+			employe.setVersion(employeEnBase.getVersion());
 			employe.setId(id);
 			return new ResponseEntity<Employe>(employeRepository.save(employe), HttpStatus.OK);
 		} else {
