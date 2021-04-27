@@ -10,7 +10,7 @@
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>formation.sopra</groupId>
-	<artifactId>formationSrpingBootRest</artifactId>
+	<artifactId>projetConges</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>formationSrpingBoot</name>
 	<description>projet de presentation de spring boot</description>
