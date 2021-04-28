@@ -7,30 +7,20 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemandeComponent } from './demande/demande.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
-import { SharedModule } from './shared/shared-module';
 import { HttpClientModule } from '@angular/common/http';
-
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    DemandeComponent,
-    LoginComponent,
-    HomeComponent,
-
-  ],
+  declarations: [AppComponent, DemandeComponent, LoginComponent, HomeComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     SharedModule,
-    HttpClientModule
     HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
