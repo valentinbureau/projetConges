@@ -27,8 +27,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import conges.projetConges.entities.Login;
+import conges.projetConges.entities.Role;
+import conges.projetConges.entities.RoleLogin;
 import conges.projetConges.exceptions.LoginInvalidException;
 import conges.projetConges.repositories.LoginRepository;
+import conges.projetConges.repositories.RoleLoginRepository;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -39,21 +42,34 @@ public class AuthController {
 	private LoginRepository loginRepository; 
 	
 	@Autowired
+	private RoleLoginRepository roleLoginRepository;
+	
+	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
+	//Connexion
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	@GetMapping("/login")
-	public void login() {}
+	@GetMapping("/*")
+	public void login() {
+	}
 	
 	//List
+	@JsonView(Views.Common.class)
 	@GetMapping("")
 	public ResponseEntity<List<Login>> allLogin(){
 		return new ResponseEntity<List<Login>>(loginRepository.findAll(),HttpStatus.OK);
 	}
 	
+	//CheckLogin Inscription
+	@GetMapping("/inscription/{login}")
+	public boolean checkLogin(@PathVariable("login") String login) {
+		Optional<Login> opt= loginRepository.findByLogin(login);
+		return opt.isPresent();
+	}
+	
 	//Create
 	@PostMapping("")
-	public ResponseEntity<Login> createEmploye(@Valid @RequestBody Login login, BindingResult br, 
+	public ResponseEntity<Login> createLogin(@Valid @RequestBody Login login, BindingResult br, 
 				UriComponentsBuilder uCB){
 		if (br.hasErrors()) {
 			throw new LoginInvalidException();
@@ -63,6 +79,10 @@ public class AuthController {
 		URI uri = uCB.path("/api/login/{id}").buildAndExpand(login.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
+		RoleLogin roleLogin=new RoleLogin();
+		roleLogin.setLogin(login);
+		roleLogin.setRole(Role.ROLE_EMPLOYE);
+		roleLoginRepository.save(roleLogin);
 		return new ResponseEntity<Login>(login, headers, HttpStatus.CREATED);
 	}
 	

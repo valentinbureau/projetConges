@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { Login } from 'src/app/model/login';
 
@@ -8,12 +10,26 @@ import { Login } from 'src/app/model/login';
 })
 export class LoginComponent implements OnInit {
   login = new Login();
+  message: string;
 
-  constructor() { }
+  constructor(private AuthenticationService: AuthenticationService, private router : Router) { }
 
   ngOnInit(): void {
   }
 
-  send(){}
+  send(){
+    this.AuthenticationService.getAuthApi(this.login).subscribe(
+      (res) => {
+        this.message = null;
+        localStorage.setItem(
+          'auth', btoa(`${this.login.login}:${this.login.password}`)
+        );
+        localStorage.setItem('login', this.login.login);
+      },
+      (error) => {
+        this.message = "Compte inconnu ou mauvais mot de passe"
+      }
+    )
+  }
 
 }
