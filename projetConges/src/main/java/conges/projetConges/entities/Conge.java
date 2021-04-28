@@ -16,31 +16,44 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+
+import com.fasterxml.jackson.annotation.JsonView;
+
+import conges.projetConges.controllers.rest.Views;
+
 import conges.projetConges.validators.DateDansLeFutur;
+
 
 @Entity
 @Table(name = "conge")
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 110, allocationSize = 1)
 public class Conge {
 	
+	@JsonView(Views.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqConge")
 	private Integer id;
+	
+	@JsonView(Views.Common.class)
 	@Enumerated(EnumType.STRING)
 	@Column(name = "typeConge")
 	private TypeConge typeConge;
 	
+	@JsonView(Views.Common.class)
 	@DateDansLeFutur
 	private LocalDate dateDebut;
 	
 	
 	private LocalDate dateFin;
+	@JsonView(Views.Common.class)
 	private String motif;
+	@JsonView(Views.Common.class)
 	private LocalDate dateDemande = LocalDate.now();
 	
 	@ManyToOne
 	@JoinColumn(name = "idconge", foreignKey = @ForeignKey(name = "conge_id_employe_fk"))
 	private Employe demandeur;
+	@JsonView(Views.Common.class)
 	@Enumerated(EnumType.STRING)
 	@Column(name = "statut")
 	private Statut statut;

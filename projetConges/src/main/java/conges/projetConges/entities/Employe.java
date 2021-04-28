@@ -2,8 +2,10 @@ package conges.projetConges.entities;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -21,10 +24,10 @@ import com.fasterxml.jackson.annotation.JsonView;
 import conges.projetConges.controllers.rest.Views;
 
 @Entity
-@Table(name="employé")
+@Table(name="employe")
 @SequenceGenerator(name= "seqEmploye", sequenceName="seq_employe", initialValue = 110, allocationSize = 1)
 public class Employe {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEmploye")
 	@JsonView(Views.Common.class)
@@ -49,6 +52,7 @@ public class Employe {
 	@JsonView(Views.Common.class)
 	private Set<Conge> conges;
 	
+	@JsonView(Views.Common.class)
 	@Version
 	private int version;
 
@@ -93,6 +97,28 @@ public class Employe {
 		this.version = version;
 	}
 	
+	
+	
+	public Service getService() {
+		return service;
+	}
+
+
+	public void setService(Service service) {
+		this.service = service;
+	}
+
+
+	public Set<Conge> getConges() {
+		return conges;
+	}
+
+
+	public void setConges(Set<Conge> conges) {
+		this.conges = conges;
+	}
+
+
 	// -------------- HashCode & Equals -----------------//
 	@Override
 	public int hashCode() {

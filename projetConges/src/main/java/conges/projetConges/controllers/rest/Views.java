@@ -22,5 +22,9 @@ public class Views {
 	public static class Formation extends Common {
 
 	}
+	
+	public static class Manager extends Common {
+
+	}
 }
 
