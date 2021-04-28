@@ -1,0 +1,15 @@
+<mat-card>
+  Gestion de congés
+  <nav>
+    <button mat-raised-button color="accent"><a class="btn btn-link" routerLink="/login" routerLinkActive="active"
+      >Se connecter</a
+    ></button>
+    <button mat-raised-button color="accent"><a class="btn btn-link" color="white" routerLink="/demande/employe/{:id}/edit" routerLinkActive="active"
+      >Demander un congé</a
+    ></button>
+    <button mat-raised-button color="accent"><a class="btn btn-link" routerLink="/inscription" routerLinkActive="active"
+      >Creation employé(admin)</a
+    ></button>
+  </nav>
+</mat-card>
+<router-outlet></router-outlet>
