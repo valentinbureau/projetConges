@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -36,6 +37,9 @@ public class AuthController {
 	
 	@Autowired
 	private LoginRepository loginRepository; 
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	@GetMapping("/login")
@@ -54,11 +58,23 @@ public class AuthController {
 		if (br.hasErrors()) {
 			throw new LoginInvalidException();
 		}
+		login.setPassword(passwordEncoder.encode(login.getLogin()));
 		login = loginRepository.save(login);
 		URI uri = uCB.path("/api/login/{id}").buildAndExpand(login.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 		return new ResponseEntity<Login>(login, headers, HttpStatus.CREATED);
+	}
+	
+	//findById
+	@JsonView(Views.Common.class)
+	@GetMapping("/{id}")
+	public ResponseEntity<Login> getById(@PathVariable("id") Integer id){
+		Optional<Login> opt = loginRepository.findById(id);
+		if(!opt.isPresent()) {
+			throw new LoginInvalidException();
+		}
+		return new ResponseEntity<Login>(opt.get(), HttpStatus.OK);
 	}
 	
 	//Delete
