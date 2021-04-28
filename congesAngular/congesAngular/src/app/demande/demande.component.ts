@@ -1,6 +1,9 @@
+import { CongesService } from './../Services/conges.service';
 import { Conge } from './../model/conge';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { EnumCongé } from '../model/enum-congé.enum';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-demande',
@@ -9,14 +12,26 @@ import { EnumCongé } from '../model/enum-congé.enum';
 })
 export class DemandeComponent implements OnInit {
 conge : Conge = new Conge();
+public dateNow=Date.now();
+keys = Object.keys;
+typeConges = EnumCongé;
 
-  keys = Object.keys;
-  typeConges = EnumCongé;
-  constructor() { }
+
+  constructor(
+    private activatedRoute : ActivatedRoute,
+    private CongesService : CongesService,
+    private router : Router,
+  ) {
+
+  }
 
   ngOnInit(): void {
   }
 
-//public typeConges= Object.values(EnumCongé);
+  save() {
+      this.CongesService.insert(this.conge).subscribe((data) => {
+        this.router.navigate(['/conge']);
+      });
+    }
+  }
 
-}

@@ -1,4 +1,4 @@
-import {SharedModule } from './shared/shared-module';
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemandeComponent } from './demande/demande.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
-
 
 @NgModule({
   declarations: [
@@ -20,8 +19,8 @@ import { LoginComponent } from './auth/login/login.component';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+   ReactiveFormsModule,
     SharedModule,
-    FormsModule, ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

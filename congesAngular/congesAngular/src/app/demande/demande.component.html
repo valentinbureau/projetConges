@@ -1,40 +1,58 @@
 
-<div>
-  <h1>Demande de congés</h1>
-  <div class="form-group">
-    <label for="dateDemande">Date demande :</label>
-    <input id="dateDemande" type="datetime-local" [(ngModel)]="conge.dateDemande" class="form-control" readonly/>
-  </div>
+  <h2>Demande de congés</h2>
+  <mat-card>
+  <mat-form-field color="accent" appearance="fill">
+    <mat-label>Date de la demande</mat-label>
+    <input matInput [matDatepicker]="dateDemande" id="dateDemande" [(ngModel)]="conge.dateDemande" class="form-control">{{dateNow |date : "EEEE dd/MM/yyyy"}}
+    <mat-datepicker-toggle matSuffix [for]="dateDemande"></mat-datepicker-toggle>
+    <mat-datepicker #dateDemande></mat-datepicker>
+    </mat-form-field>
+  </mat-card>
 
-
-  <mat-form-field appearance="fill">
+<mat-card>
+  <mat-form-field color="accent" appearance="fill">
     <mat-label>Date de debut</mat-label>
-    <input matInput [(ngModel)]="conge.dateDebut">
-    <mat-datepicker-toggle matSuffix ></mat-datepicker-toggle>
+    <input matInput [matDatepicker]="dateDebut" id="dateDebut" [(ngModel)]="conge.dateDebut" class="form-control">
+    <mat-datepicker-toggle matSuffix [for]="dateDebut"></mat-datepicker-toggle>
+    <mat-datepicker #dateDebut></mat-datepicker>
+  </mat-form-field>&nbsp;
 
+
+  <mat-form-field color="accent" appearance="fill">
+    <mat-label>Date de fin</mat-label>
+    <input matInput [matDatepicker]="dateFin" id="dateFin" [(ngModel)]="conge.dateFin" class="form-control">
+    <mat-datepicker-toggle matSuffix [for]="dateFin"></mat-datepicker-toggle>
+    <mat-datepicker #dateFin></mat-datepicker>
   </mat-form-field>
+</mat-card>
 
-    <div class="form-group">
-      <label for="dateDebut">Date de debut :</label>
-      <input id="dateDebut" type="dat" [(ngModel)]="conge.dateDebut" class="form-control" readonly/>
-    </div>
-    <div class="form-group">
-      <label for="dateFin">Date de fin :</label>
-      <input id="dateFin" type="date" [(ngModel)]="conge.dateFin" class="form-control" readonly/>
-    </div>
-    <div class="form-group">
-      <label for="referent">Type de congés :</label>
-      <select name="type" id="type" [(ngModel)]="conge.type" class="form-control">
-        <option *ngFor="let typeConge of keys(typeConges)" [ngValue]="typeConge">{{typeConges[typeConge]}}
-        </option>
-      </select>
+
+
+<mat-card>
       <div>
+        <mat-form-field appearance="fill">
+          <mat-label>Type de congés :</mat-label>
+          <select matNativeControl [(ngModel)]="conge.type" name="type">
+            <option *ngFor="let typeConge of keys(typeConges)" [ngValue]="typeConge">{{typeConges[typeConge]}}
+            </option>
+
+          </select>
+        </mat-form-field>
         <p>{{conge.type}}</p>
       </div>
-    </div>
-  <div class="form-group">
-    <label for="motif">Motif du congé demandé  :</label>
-    <input id="motif" [(ngModel)]="conge.motif" class="form-control" readonly/>
-  </div>
+    </mat-card>
 
-</div>
+    <mat-card>
+    <mat-form-field>
+      <mat-label>Motif du congé demandé</mat-label>
+      <input matInput id="dateFin" [(ngModel)]="conge.motif" class="form-control">
+  </mat-form-field>
+</mat-card>
+
+<button color="primary" mat-button (click)="save()">Soumettre ma demande</button>
+      <a
+        routerLink="/conge"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+        >Annuler</a>
+
