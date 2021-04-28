@@ -48,25 +48,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 					.antMatchers("/api","/api/**")
 					.authenticated()
 					.and()
-					.httpBasic()
-			.and()
-			.antMatcher("/**")
-				.csrf().ignoringAntMatchers("/api","/api/**")
-				.and()
-				.authorizeRequests()
-					.antMatchers("/login","/logout", "/public", "/public/**","/anonymous","/error","/api","/api/**").permitAll()
-					.antMatchers("/admin","/admin/**").hasAnyRole("ADMIN")
-					.anyRequest().authenticated()
-			.and()
-			.formLogin()
-				.loginPage("/login")
-				.defaultSuccessUrl("/public")
-				.failureUrl("/login?error")
-			.and()
-			.logout()
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/public");
-		// @formatter:on
+					.httpBasic();
+//			.and()
+//			.antMatcher("/**")
+//				.csrf().ignoringAntMatchers("/api","/api/**")
+//				.and()
+//				.authorizeRequests()
+//					.antMatchers("/login","/logout", "/public", "/public/**","/anonymous","/error").permitAll()
+//					.antMatchers("/admin","/admin/**").hasAnyRole("ADMIN")
+//					.anyRequest().authenticated();
+//			.and()
+//			.formLogin()
+//				.loginPage("/login")
+//				.defaultSuccessUrl("/public")
+//				.failureUrl("/login?error")
+//			.and()
+//			.logout()
+//				.logoutUrl("/logout")
+//				.logoutSuccessUrl("/public");
+//		// @formatter:on
 	}
 
 	// user
