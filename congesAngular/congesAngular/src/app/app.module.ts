@@ -7,7 +7,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DemandeComponent } from './demande/demande.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
-import { SharedModule } from './shared/shared-module';
 import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 
@@ -25,7 +24,6 @@ import { HomeComponent } from './home/home.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     SharedModule,
-    FormsModule,
     HttpClientModule
   ],
   providers: [],

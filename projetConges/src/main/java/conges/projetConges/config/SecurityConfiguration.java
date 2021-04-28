@@ -36,51 +36,25 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		//// @formatter:off
 		http
-			.antMatcher("/api/**")
-				.csrf().ignoringAntMatchers("/api","/api/**")
-				.and()
-				.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-				.and()
-				.authorizeRequests()
-					.antMatchers(HttpMethod.OPTIONS).anonymous()
-				.and()
-				.authorizeRequests()
-					.antMatchers("/api","/api/**")
-					.authenticated()
-					.and()
-					.httpBasic()
-			.and()
-			.antMatcher("/**")
-				.csrf().ignoringAntMatchers("/api","/api/**")
-				.and()
-				.authorizeRequests()
-					.antMatchers("/login","/logout", "/public", "/public/**","/anonymous","/error","/api","/api/**").permitAll()
-					.antMatchers("/admin","/admin/**").hasAnyRole("ADMIN")
-					.anyRequest().authenticated()
-			.and()
-			.formLogin()
-				.loginPage("/login")
-				.defaultSuccessUrl("/public")
-				.failureUrl("/login?error")
-			.and()
-			.logout()
-				.logoutUrl("/logout")
-				.logoutSuccessUrl("/public");
+        .antMatcher("/api/")
+            .csrf().ignoringAntMatchers("/api","/api/")
+            .and()
+            .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+            .and()
+            .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS).anonymous()
+            .and()
+            .authorizeRequests()
+                .antMatchers("/api","/api/")
+                .authenticated()
+                .and()
+                .httpBasic();
 		// @formatter:on
 	}
 
 	// user
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-//		auth.inMemoryAuthentication().withUser("toto").password("{noop}toto").roles("ADMIN");
-//		auth.inMemoryAuthentication().withUser("tutu").password("{noop}tutu").roles("USER");
-
-		// version jdbc
-		//// @formatter:off
-//		auth.jdbcAuthentication().dataSource(dataSource)
-//			.usersByUsernameQuery("select login,password,enable from login where login=?")
-//			.authoritiesByUsernameQuery("select l.login,rl.role from role_login rl join login l on rl.login_id=l.id where l.login=?");
-		// @formatter:on
 		auth.userDetailsService(userDetailsService);
 	}
 

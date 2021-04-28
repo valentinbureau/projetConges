@@ -18,6 +18,6 @@ export class AuthenticationService {
       'Content-Type':'application/json',
       authorization: `Basic ${btoa(texte)}`
     })
-    return this.http.get<void>('http://127.0.0.1:8080/vacances/api/auth/login', { headers: headers });
+    return this.http.get<void>('http://127.0.0.1:8080/vacances/api/auth/*', { headers: headers });
   }
 }

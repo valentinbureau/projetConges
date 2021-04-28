@@ -17,6 +17,6 @@ export class InscriptionService {
   }
 
   public checkLogin(login:string): Observable<boolean> {
-    return this.http.get<boolean>(`http://localhost:8080/vacances/api/auth/${login}`)
+    return this.http.get<boolean>(`http://localhost:8080/vacances/api/auth/inscription/${login}`)
   }
 }
