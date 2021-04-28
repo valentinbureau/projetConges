@@ -67,7 +67,6 @@ public class EmployeRestController {
 	}
 	
 	//findById
-	@JsonView(Views.Common.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<Employe> getById(@PathVariable("id") Integer id){
 		Optional<Employe> opt = employeRepository.findById(id);

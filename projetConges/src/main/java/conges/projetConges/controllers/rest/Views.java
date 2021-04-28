@@ -16,10 +16,10 @@ public class Views {
 	public static class Test extends Common {
 
 	}
-	public static class Formateur extends Common {
+	public static class Employe extends Common {
 
 	}
-	public static class Formation extends Common {
+	public static class Service extends Common {
 
 	}
 	
