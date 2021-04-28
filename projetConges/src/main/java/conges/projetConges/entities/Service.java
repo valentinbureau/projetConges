@@ -14,15 +14,21 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import conges.projetConges.controllers.rest.Views;
+
 @Entity
 @Table(name = "service")
 @SequenceGenerator(name = "seqService", sequenceName = "seq_service", initialValue = 110, allocationSize = 1)
 public class Service {
 	
+	@JsonView(Views.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqService")
 	private Integer id;
 	
+	@JsonView(Views.Common.class)
 	@NotEmpty
 	@Column(name = "nom", length = 150, nullable = false)
 	private String nom;

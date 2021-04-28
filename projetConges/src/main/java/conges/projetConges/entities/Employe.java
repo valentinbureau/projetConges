@@ -16,30 +16,40 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import conges.projetConges.controllers.rest.Views;
+
 @Entity
 @Table(name="employé")
 @SequenceGenerator(name= "seqEmploye", sequenceName="seq_employe", initialValue = 110, allocationSize = 1)
 public class Employe {
-
+	
+	@JsonView(Views.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEmploye")
 	private Integer id;
 	
+	@JsonView(Views.Common.class)
 	@NotEmpty
 	@Column(name = "prenom", length = 150, nullable = false)
 	private String prenom;
 	
+	@JsonView(Views.Common.class)
 	@NotEmpty
 	@Column(name = "nom", length = 150, nullable = false)
 	private String nom;
 	
+	@JsonView(Views.Common.class)
 	@ManyToOne
 	@JoinColumn(name = "id_service", foreignKey = @ForeignKey(name = "employe_id_service_fk"))
 	private Service service;
 	
+	@JsonView(Views.Common.class)
 	@OneToMany(mappedBy="demandeur")
 	private Set<Conge> conges;
 	
+	@JsonView(Views.Common.class)
 	@Version
 	private int version;
 
