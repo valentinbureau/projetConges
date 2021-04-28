@@ -21,3 +21,6 @@ footer {
   padding: 0 50px;
   height: 100px;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
