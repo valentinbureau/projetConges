@@ -8,11 +8,11 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-@Constraint(validatedBy = FormationDansLeFuturValidator.class)
+@Constraint(validatedBy = DateFinValidator.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface FormationDansLeFutur {
-	String message() default "la formation doit avoir une date dans le futur";
+public @interface DateFin {
+	String message() default "la date de fin doit arriver après la date de debut";
 
 	Class<?>[] groups() default {};
 

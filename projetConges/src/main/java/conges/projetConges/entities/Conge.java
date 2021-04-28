@@ -16,9 +16,13 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+
 import com.fasterxml.jackson.annotation.JsonView;
 
 import conges.projetConges.controllers.rest.Views;
+
+import conges.projetConges.validators.DateDansLeFutur;
+
 
 @Entity
 @Table(name = "conge")
@@ -36,13 +40,15 @@ public class Conge {
 	private TypeConge typeConge;
 	
 	@JsonView(Views.Common.class)
+	@DateDansLeFutur
 	private LocalDate dateDebut;
-	@JsonView(Views.Common.class)
+	
+	
 	private LocalDate dateFin;
 	@JsonView(Views.Common.class)
 	private String motif;
 	@JsonView(Views.Common.class)
-	private LocalDate dateDemande;
+	private LocalDate dateDemande = LocalDate.now();
 	
 	@ManyToOne
 	@JoinColumn(name = "idconge", foreignKey = @ForeignKey(name = "conge_id_employe_fk"))

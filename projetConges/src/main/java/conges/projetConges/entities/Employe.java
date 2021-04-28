@@ -25,28 +25,28 @@ import conges.projetConges.controllers.rest.Views;
 @SequenceGenerator(name= "seqEmploye", sequenceName="seq_employe", initialValue = 110, allocationSize = 1)
 public class Employe {
 	
-	@JsonView(Views.Common.class)
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEmploye")
+	@JsonView(Views.Common.class)
 	private Integer id;
 	
-	@JsonView(Views.Common.class)
 	@NotEmpty
 	@Column(name = "prenom", length = 150, nullable = false)
+	@JsonView(Views.Common.class)
 	private String prenom;
 	
-	@JsonView(Views.Common.class)
 	@NotEmpty
 	@Column(name = "nom", length = 150, nullable = false)
+	@JsonView(Views.Common.class)
 	private String nom;
 	
-	@JsonView(Views.Common.class)
 	@ManyToOne
 	@JoinColumn(name = "id_service", foreignKey = @ForeignKey(name = "employe_id_service_fk"))
+	@JsonView(Views.Common.class)
 	private Service service;
 	
-	@JsonView(Views.Common.class)
 	@OneToMany(mappedBy="demandeur")
+	@JsonView(Views.Common.class)
 	private Set<Conge> conges;
 	
 	@JsonView(Views.Common.class)

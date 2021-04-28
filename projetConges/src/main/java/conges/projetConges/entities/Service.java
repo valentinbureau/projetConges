@@ -4,9 +4,11 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -35,6 +37,7 @@ public class Service {
 	
 	@NotEmpty
 	@OneToOne(mappedBy="service")
+	@JoinColumn(name = "manager", foreignKey = @ForeignKey(name = "service_id_manager_fk"))
 	private Employe manager;
 	
 	@OneToMany(mappedBy = "service")

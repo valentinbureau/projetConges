@@ -13,13 +13,19 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import conges.projetConges.controllers.rest.Views;
+
 @Entity
 @Table(name = "login")
 @SequenceGenerator(name = "seqLogin", sequenceName = "seq_login", initialValue = 100, allocationSize = 1)
 public class Login {
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqLogin")
+	@JsonView(Views.Common.class)
 	private Integer id;
+	@JsonView(Views.Common.class)
 	@Column(name = "login", length = 150, unique = true, nullable = false)
 	private String login;
 	@Column(name = "password", length = 200, nullable = false)
