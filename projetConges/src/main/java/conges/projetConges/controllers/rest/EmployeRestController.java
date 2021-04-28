@@ -48,12 +48,14 @@ public class EmployeRestController {
 	private ServiceRepository serviceRepository;
 	
 	@GetMapping("")
+	@JsonView(Views.Employe.class)
 	public ResponseEntity<List<Employe>> allEmployes(){
 		return new ResponseEntity<List<Employe>>(employeRepository.findAll(),HttpStatus.OK);
 	}
 	
 	//Create
 	@PostMapping("")
+	@JsonView(Views.Employe.class)
 	public ResponseEntity<Employe> createEmploye(@Valid @RequestBody Employe employe, BindingResult br, 
 				UriComponentsBuilder uCB){
 		if (br.hasErrors()) {
@@ -67,7 +69,7 @@ public class EmployeRestController {
 	}
 	
 	//findById
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Employe.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<Employe> getById(@PathVariable("id") Integer id){
 		Optional<Employe> opt = employeRepository.findById(id);
@@ -79,10 +81,12 @@ public class EmployeRestController {
 	
 	//Delete
 	@DeleteMapping("/{id}")
+	@JsonView(Views.Employe.class)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deleteById(@PathVariable("id") Integer id) {
 		Optional<Employe> opt = employeRepository.findById(id);
 		if(opt.isPresent()) {
+			managerToNull(opt.get());
 			employeRepository.deleteById(id);
 		} else {
 		throw new EmployeInvalidException();	
@@ -90,25 +94,25 @@ public class EmployeRestController {
 	}
 	
 	//Update
-//	@JsonView(Views.Common.class)
-//	@PutMapping("/{id}")
-//	public ResponseEntity<Employe> update(@RequestBody Employe employe, BindingResult br, @PathVariable("id") Integer id){
-//		if (br.hasErrors()) {
-//			throw new EmployeInvalidException();
-//		}
-//		Optional<Employe> opt = employeRepository.findById(id);
-//		if (!opt.isPresent()) {
-//			Employe employeEnBase = opt.get();
-//			employe.setVersion(employeEnBase.getVersion());
-//			employe.setId(id);
-//			return new ResponseEntity<Employe>(employeRepository.save(employe), HttpStatus.OK);
-//		} else {
-//			throw new EmployeInvalidException();
-//		}
-//	}
+	@JsonView(Views.Common.class)
+	@PutMapping("/{id}")
+	public ResponseEntity<Employe> update(@RequestBody Employe employe, BindingResult br, @PathVariable("id") Integer id){
+		if (br.hasErrors()) {
+			throw new EmployeInvalidException();
+		}
+		Optional<Employe> opt = employeRepository.findById(id);
+		if (!opt.isPresent()) {
+			Employe employeEnBase = opt.get();
+			employe.setVersion(employeEnBase.getVersion());
+			employe.setId(id);
+			return new ResponseEntity<Employe>(employeRepository.save(employe), HttpStatus.OK);
+		} else {
+			throw new EmployeInvalidException();
+		}
+	}
 	
 	@PatchMapping("/{id}")
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Employe.class)
 	public Employe update(@RequestBody Map<String, Object> attributs, @PathVariable Integer id) {
 		Optional<Employe> opt = employeRepository.findById(id);
 		if (!opt.isPresent()) {
@@ -140,5 +144,17 @@ public class EmployeRestController {
 
 		return employeRepository.save(employe);
 
+	}
+	
+	private void managerToNull(Employe manager)
+	{
+		List<Service> services = serviceRepository.findAll();
+		for (Service s : services)
+		{
+			if (s.getManager().getId()==manager.getId())
+			{
+				s.setManager(null);
+			}
+		}
 	}
 }

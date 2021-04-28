@@ -15,7 +15,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
+import org.springframework.format.annotation.DateTimeFormat;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -29,35 +32,50 @@ import conges.projetConges.validators.DateDansLeFutur;
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 110, allocationSize = 1)
 public class Conge {
 	
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Conge.class, Views.Employe.class})
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqConge")
 	private Integer id;
 	
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Conge.class, Views.Employe.class})
 	@Enumerated(EnumType.STRING)
 	@Column(name = "typeConge")
 	private TypeConge typeConge;
 	
-	@JsonView(Views.Common.class)
+	@NotNull
+	@JsonView({Views.Conge.class, Views.Employe.class})
 	@DateDansLeFutur
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "dateDebut")
 	private LocalDate dateDebut;
 	
-	
+	@NotNull
+	@JsonView({Views.Conge.class, Views.Employe.class})
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "dateFin")
 	private LocalDate dateFin;
-	@JsonView(Views.Common.class)
+	
+	@JsonView(Views.Conge.class)
+	@Column(name = "motif")
 	private String motif;
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Conge.class, Views.Employe.class})
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Column(name = "dateDemande")
 	private LocalDate dateDemande = LocalDate.now();
 	
+	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "idconge", foreignKey = @ForeignKey(name = "conge_id_employe_fk"))
+	@JoinColumn(name = "id_employe", foreignKey = @ForeignKey(name = "conge_id_employe_fk"))
+	@JsonView(Views.Conge.class)
 	private Employe demandeur;
-	@JsonView(Views.Common.class)
+	
+	@JsonView(Views.Conge.class)
 	@Enumerated(EnumType.STRING)
 	@Column(name = "statut")
 	private Statut statut;
 	
+	@JsonView(Views.Conge.class)
+	@Column(name="raisonRefus")
 	private String RaisonRefus;
 	@Version
 	private int version;
