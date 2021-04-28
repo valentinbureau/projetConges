@@ -23,7 +23,7 @@ public class Views {
 
 	}
 	
-	public static class Manager extends Common {
+	public static class Conge extends Common {
 
 	}
 }

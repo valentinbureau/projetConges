@@ -38,12 +38,14 @@ public class CongeRestController {
 	private CongeRepository congeRepository;
 	
 	@GetMapping("")
+	@JsonView(Views.Conge.class)
 	public ResponseEntity<List<Conge>> allConges(){
 		return new ResponseEntity<List<Conge>>(congeRepository.findAll(),HttpStatus.OK);
 	}
 	
 	//Create
 	@PostMapping("")
+	@JsonView(Views.Conge.class)
 	public ResponseEntity<Conge> createEmploye(@Valid @RequestBody Conge conge, BindingResult br, 
 				UriComponentsBuilder uCB){
 		if (br.hasErrors()) {
@@ -57,7 +59,7 @@ public class CongeRestController {
 	}
 	
 	//findById
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Conge.class)
 	@GetMapping("/{id}")
 	public ResponseEntity<Conge> getById(@PathVariable("id") Integer id){
 		Optional<Conge> opt = congeRepository.findById(id);
@@ -70,6 +72,7 @@ public class CongeRestController {
 	//Delete
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@JsonView(Views.Conge.class)
 	public void deleteById(@PathVariable("id") Integer id) {
 		Optional<Conge> opt = congeRepository.findById(id);
 		if(opt.isPresent()) {
@@ -80,7 +83,7 @@ public class CongeRestController {
 	}
 	
 	//Update
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Conge.class)
 	@PutMapping("/{id}")
 	public ResponseEntity<Conge> update(@RequestBody Conge conge, BindingResult br, @PathVariable("id") Integer id){
 		if (br.hasErrors()) {

@@ -15,6 +15,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -27,13 +29,12 @@ import conges.projetConges.controllers.rest.Views;
 @SequenceGenerator(name = "seqService", sequenceName = "seq_service", initialValue = 110, allocationSize = 1)
 public class Service {
 	
-	
 	@Id
-	@JsonView(Views.Common.class)
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqService")
+	@JsonView({ Views.Service.class, Views.Employe.class})
 	private Integer id;
 	
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Employe.class, Views.Service.class})
 	@NotEmpty
 	@Column(name = "nom", length = 150, nullable = false)
 	private String nom;
@@ -42,10 +43,15 @@ public class Service {
 //	@OneToOne(mappedBy="service")
 //	@JoinColumn(name = "manager", foreignKey = @ForeignKey(name = "service_id_manager_fk"))
 //	private Employe manager;
+
+	@OneToOne
+	@JoinColumn(name = "manager", foreignKey = @ForeignKey(name = "service_id_manager_fk"))
+	@JsonView({Views.Service.class})
+	private Employe manager;
+
 	
-	
-	@JsonView(Views.Service.class)
 	@OneToMany(mappedBy = "service")
+	@JsonView(Views.Service.class)
 	private Set<Employe> listeEmployes;
 
 	@Version
@@ -72,13 +78,13 @@ public class Service {
 		this.nom = nom;
 	}
 
-//	public Employe getManager() {
-//		return manager;
-//	}
-//
-//	public void setManager(Employe manager) {
-//		this.manager = manager;
-//	}
+	public Employe getManager() {
+		return manager;
+	}
+
+	public void setManager(Employe manager) {
+		this.manager = manager;
+	}
 
 	public Set<Employe> getListeEmployes() {
 		return listeEmployes;
