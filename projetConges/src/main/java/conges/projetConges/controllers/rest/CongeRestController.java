@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -42,6 +43,7 @@ public class CongeRestController {
 	public ResponseEntity<List<Conge>> allConges(){
 		return new ResponseEntity<List<Conge>>(congeRepository.findAll(),HttpStatus.OK);
 	}
+	
 	
 	//Create
 	@PostMapping("")
@@ -98,5 +100,17 @@ public class CongeRestController {
 		} else {
 			throw new CongeInvalidException();
 		}
+	}
+	
+	@JsonView(Views.Conge.class)
+	@GetMapping("/employe/{login}")
+	public ResponseEntity<List<Conge>> allCongesByEmploye(@PathVariable("login") String login){
+		
+		Optional<List<Conge>> opt = congeRepository.findCongesByLogin(login);
+		System.out.println(opt.get());
+		if(!opt.isPresent()) {
+			throw new CongeInvalidException();
+		}
+		return new ResponseEntity<List<Conge>>(opt.get(), HttpStatus.OK);
 	}
 }
