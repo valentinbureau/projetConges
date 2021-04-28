@@ -25,10 +25,13 @@
     <div class="form-group">
       <label for="referent">Type de congés :</label>
       <select name="type" id="type" [(ngModel)]="conge.type" class="form-control">
-        <option [value]="typeConge" *ngFor="let typeConge of typeConges">{{TypeCongeMapping[typeConges]}}
+        <option *ngFor="let typeConge of keys(typeConges)" [ngValue]="typeConge">{{typeConges[typeConge]}}
         </option>
       </select>
-  </div>
+      <div>
+        <p>{{conge.type}}</p>
+      </div>
+    </div>
   <div class="form-group">
     <label for="motif">Motif du congé demandé  :</label>
     <input id="motif" [(ngModel)]="conge.motif" class="form-control" readonly/>

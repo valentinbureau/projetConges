@@ -1,4 +1,3 @@
-import { TypeCongeMapping } from './../model/enum-congé.enum';
 import { Conge } from './../model/conge';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { EnumCongé } from '../model/enum-congé.enum';
@@ -11,13 +10,13 @@ import { EnumCongé } from '../model/enum-congé.enum';
 export class DemandeComponent implements OnInit {
 conge : Conge = new Conge();
 
-
+  keys = Object.keys;
+  typeConges = EnumCongé;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-public TypeCongeMapping = TypeCongeMapping;
-public typeConges= Object.values(EnumCongé);
+//public typeConges= Object.values(EnumCongé);
 
 }
