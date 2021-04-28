@@ -4,9 +4,11 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
@@ -33,8 +35,9 @@ public class Service {
 	@Column(name = "nom", length = 150, nullable = false)
 	private String nom;
 	
-	@NotEmpty
-	@OneToOne(mappedBy="service")
+	@JsonView(Views.Common.class)
+	@OneToOne
+	@JoinColumn(name="id_manager", foreignKey = @ForeignKey(name = "service_id_manager_fk"))
 	private Employe manager;
 	
 	@OneToMany(mappedBy = "service")
