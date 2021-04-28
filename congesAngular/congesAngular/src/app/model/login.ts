@@ -3,13 +3,13 @@ import { Employe } from './employe';
 
 export class Login {
   private _login: string;
-  private _motDePass: string;
+  private _password: string;
   private _role:EnumRole;
 
 
-  constructor(login?: string, motDePass?: string) {
+  constructor(login?: string, password?: string) {
     this._login = login;
-    this._motDePass = motDePass;
+    this._password = password;
   }
 
 
@@ -21,12 +21,12 @@ export class Login {
     this._login = value;
   }
 
-  public get motDePass(): string {
-    return this._motDePass;
+  public get password(): string {
+    return this._password;
   }
 
-  public set motDePass(value: string) {
-    this._motDePass = value;
+  public set password(value: string) {
+    this._password = value;
   }
 
   public get role(): EnumRole {
