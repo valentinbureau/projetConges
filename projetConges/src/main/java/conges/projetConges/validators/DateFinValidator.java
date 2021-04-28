@@ -5,11 +5,15 @@ import java.time.LocalDate;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class FormationDansLeFuturValidator implements ConstraintValidator<FormationDansLeFutur, LocalDate> {
+import conges.projetConges.entities.Conge;
 
+public class DateFinValidator implements ConstraintValidator<DateFin, LocalDate>{
+
+	private Conge conge;
+	
 	@Override
 	public boolean isValid(LocalDate value, ConstraintValidatorContext context) {
-		return (value != null) ? value.isAfter(LocalDate.now()) : true;
+		return (value != null) ? value.isAfter(conge.getDateDebut()) : true;
 	}
 
 }

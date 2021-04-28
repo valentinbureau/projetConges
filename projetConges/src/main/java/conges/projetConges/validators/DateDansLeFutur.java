@@ -11,7 +11,7 @@ import javax.validation.Payload;
 @Constraint(validatedBy = DateDansLeFuturValidator.class)
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface DureeModule {
+public @interface DateDansLeFutur {
 	String message() default "la formation doit avoir une date dans le futur";
 
 	Class<?>[] groups() default {};

@@ -16,6 +16,8 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
+import conges.projetConges.validators.DateDansLeFutur;
+
 @Entity
 @Table(name = "conge")
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 110, allocationSize = 1)
@@ -28,10 +30,13 @@ public class Conge {
 	@Column(name = "typeConge")
 	private TypeConge typeConge;
 	
+	@DateDansLeFutur
 	private LocalDate dateDebut;
+	
+	
 	private LocalDate dateFin;
 	private String motif;
-	private LocalDate dateDemande;
+	private LocalDate dateDemande = LocalDate.now();
 	
 	@ManyToOne
 	@JoinColumn(name = "idconge", foreignKey = @ForeignKey(name = "conge_id_employe_fk"))
