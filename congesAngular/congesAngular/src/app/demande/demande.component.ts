@@ -28,9 +28,16 @@ typeConges = EnumCongé;
   }
 
   save() {
+    if(this.conge.dateFin.getTime()<this.conge.dateDebut.getTime()){
+      alert("La date de fin n'est pas valide")}
+      else if(this.conge.dateDebut.getTime()<Date.now()){
+      alert("La date de début des congés n'est pas valide")}
+      else if(this.conge.type==null||this.conge.dateDebut==null||this.conge.dateFin==null){
+      alert("Veuillez remplir tous les champs pour pouvoir soumettre votre demande")}
+  else{
       this.CongesService.insert(this.conge).subscribe((data) => {
         this.router.navigate(['/conge']);
       });
     }
   }
-
+}
