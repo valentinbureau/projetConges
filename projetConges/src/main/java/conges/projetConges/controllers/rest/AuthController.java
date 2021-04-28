@@ -53,7 +53,7 @@ public class AuthController {
 	
 	//Create
 	@PostMapping("")
-	public ResponseEntity<Login> createEmploye(@Valid @RequestBody Login login, BindingResult br, 
+	public ResponseEntity<Login> createLogin(@Valid @RequestBody Login login, BindingResult br, 
 				UriComponentsBuilder uCB){
 		if (br.hasErrors()) {
 			throw new LoginInvalidException();
