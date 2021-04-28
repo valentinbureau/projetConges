@@ -1,6 +1,6 @@
 import { Service } from './../model/service';
 import { Employe } from './../model/employe';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -10,21 +10,21 @@ import { Observable } from 'rxjs';
 export class ServiceEmployesService {
 
   private static URL : string = "http://127.0.0.1:8080/vacances/api/service";
-  private HttpHeaders: HttpHeaders;
+  private httpHeaders: HttpHeaders;
 
-  constructor(private http: HttpHeaders) {
+  constructor(private http: HttpClient) {
     this.initHeader();
   }
 
   private initHeader(){
-    this.HttpHeaders = new HttpHeaders({
+    this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Basic ${localStorage.getItem('auth')}`,
     });
   }
 
-  public getEmployes(): Observable<Employe[]>{
+  public getEmployes(id: number): Observable<Service>{
     this.initHeader();
-    return this.http.get<Service>(ServiceEmployesService.URL, { headers : this.HttpHeaders,});
+    return this.http.get<Service>(ServiceEmployesService.URL + '/' + id, { headers: this.httpHeaders, });
   };
 }
