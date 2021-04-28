@@ -1,8 +1,8 @@
 export enum EnumCongé {
-conges_payes="Conges payés",
-conges_sans_solde="Congés sans solde",
-absence_autorisee="Absence autorisée",
-absence_justifiee="Absence justifiée",
+"Congés payés"="CONGES_PAYES",
+"Congés sans solde"="CONGES_SANS_SOLDE",
+"Absence autorisée"="ABSENCE_AUTORISEE",
+"Absence justifiée"="ABSENCE_JUSTIFIEE",
 }
 
 

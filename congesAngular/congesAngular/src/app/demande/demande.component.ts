@@ -1,8 +1,10 @@
+
 import { CongesService } from './../Services/conges.service';
 import { Conge } from './../model/conge';
 import { Component, OnInit, NgModule } from '@angular/core';
 import { EnumCongé } from '../model/enum-congé.enum';
 import { ActivatedRoute, Router } from '@angular/router';
+
 
 
 @Component({
@@ -20,10 +22,7 @@ typeConges = EnumCongé;
   constructor(
     private activatedRoute : ActivatedRoute,
     private CongesService : CongesService,
-    private router : Router,
-  ) {
-
-  }
+    private router : Router, ) {  };
 
   ngOnInit(): void {
   }

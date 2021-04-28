@@ -1,8 +1,8 @@
 export enum EnumStatus {
 
-  "En attente de traitement",
-  "Acceptée",
-  "Refusée"
+  "EN_COURS_DE_TRAITEMENT",
+  "ACCEPTEE",
+  "REFUSEE"
 }
 
 

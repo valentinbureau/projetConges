@@ -1,7 +1,11 @@
+import { EnumStatus } from './../model/enum-status.enum';
 import { Conge } from './../model/conge';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { EnumCongé } from '../model/enum-congé.enum';
+
+
 
 @Injectable({providedIn: 'root'})
 export class ServiceNameService {
@@ -15,15 +19,19 @@ export class ServiceNameService {
 export class CongesService {
   private static URL = 'http://127.0.0.1:8080/vacances/api/conge';
   private httpHeaders : HttpHeaders;
+  keys = Object.keys;
+  statut = EnumStatus;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+    )
+    {
     this.initHeader();}
 
 
   private initHeader() {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      Authorization: `Basic ${localStorage.getItem('auth')}`,
+     // Authorization: `Basic ${localStorage.getItem('auth')},
     });
   }
 
@@ -67,10 +75,9 @@ export class CongesService {
       dateFin : conge.dateFin,
       motif : conge.motif,
       dateDemande : conge.dateDemande,
-      statut : conge.statut,
-      raisonRefus : conge.raisonRefus,
+      statut : EnumStatus.EN_COURS_DE_TRAITEMENT,
     };
-
+    console.log(conge.dateDebut);
     return this.http.post<Conge>(CongesService.URL, congeFormate, {
       headers: this.httpHeaders,
     });

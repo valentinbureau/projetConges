@@ -16,7 +16,6 @@ const ANGULAR_MATERIAL = [
   MatNativeDateModule,
   MatDatepickerModule,
   MatAutocompleteModule,
-
 ];
 
 @NgModule({
