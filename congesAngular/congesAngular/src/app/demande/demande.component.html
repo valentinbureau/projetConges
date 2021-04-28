@@ -1,0 +1,37 @@
+
+<div>
+  <h1>Demande de congés</h1>
+  <div class="form-group">
+    <label for="dateDemande">Date demande :</label>
+    <input id="dateDemande" type="datetime-local" [(ngModel)]="conge.dateDemande" class="form-control" readonly/>
+  </div>
+
+
+  <mat-form-field appearance="fill">
+    <mat-label>Date de debut</mat-label>
+    <input matInput [(ngModel)]="conge.dateDebut">
+    <mat-datepicker-toggle matSuffix ></mat-datepicker-toggle>
+
+  </mat-form-field>
+
+    <div class="form-group">
+      <label for="dateDebut">Date de debut :</label>
+      <input id="dateDebut" type="dat" [(ngModel)]="conge.dateDebut" class="form-control" readonly/>
+    </div>
+    <div class="form-group">
+      <label for="dateFin">Date de fin :</label>
+      <input id="dateFin" type="date" [(ngModel)]="conge.dateFin" class="form-control" readonly/>
+    </div>
+    <div class="form-group">
+      <label for="referent">Type de congés :</label>
+      <select name="type" id="type" [(ngModel)]="conge.type" class="form-control">
+        <option [value]="typeConge" *ngFor="let typeConge of typeConges">{{TypeCongeMapping[typeConges]}}
+        </option>
+      </select>
+  </div>
+  <div class="form-group">
+    <label for="motif">Motif du congé demandé  :</label>
+    <input id="motif" [(ngModel)]="conge.motif" class="form-control" readonly/>
+  </div>
+
+</div>
