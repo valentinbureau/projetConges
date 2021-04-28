@@ -27,22 +27,22 @@ public class Employe {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqEmploye")
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Employe.class, Views.Service.class, Views.Conge.class})
 	private Integer id;
 	
 	@NotEmpty
 	@Column(name = "prenom", length = 150, nullable = false)
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Employe.class, Views.Service.class, Views.Conge.class})
 	private String prenom;
 	
 	@NotEmpty
 	@Column(name = "nom", length = 150, nullable = false)
-	@JsonView(Views.Common.class)
+	@JsonView({Views.Employe.class, Views.Service.class, Views.Conge.class})
 	private String nom;
 	
 	@ManyToOne
 	@JoinColumn(name = "id_service", foreignKey = @ForeignKey(name = "employe_id_service_fk"))
-	@JsonView(Views.Employe.class)
+	@JsonView({Views.Employe.class})
 	private Service service;
 	
 	@OneToMany(mappedBy="demandeur")

@@ -31,6 +31,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.annotation.JsonView;
 
 import conges.projetConges.entities.Conge;
+import conges.projetConges.entities.Employe;
 import conges.projetConges.entities.Service;
 import conges.projetConges.exceptions.EmployeInvalidException;
 import conges.projetConges.exceptions.ServiceInvalidException;
@@ -49,12 +50,14 @@ public class ServiceRestController {
 	private EmployeRepository employeRepository;
 
 	@GetMapping("")
+	@JsonView(Views.Service.class)
 	public ResponseEntity<List<Service>> allServices(){
 		return new ResponseEntity<List<Service>>(serviceRepository.findAll(),HttpStatus.OK);
 	}
 
 	//Create
 	@PostMapping("")
+	@JsonView(Views.Service.class)
 	public ResponseEntity<Service> createService(@Valid @RequestBody Service service, BindingResult br, 
 			UriComponentsBuilder uCB){
 		if (br.hasErrors()) {
@@ -64,11 +67,16 @@ public class ServiceRestController {
 		URI uri = uCB.path("/api/service/{id}").buildAndExpand(service.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
+		Optional<Employe> m = employeRepository.findById(service.getManager().getId());
+		Employe ma=m.get();
+		ma.setService(service);
+		ma= employeRepository.save(m.get());
 		return new ResponseEntity<Service>(service, headers, HttpStatus.CREATED);
 	}
 
 	//findById
 	@GetMapping("/{id}")
+	@JsonView(Views.Service.class)
 	public ResponseEntity<Service> getById(@PathVariable("id") Integer id){
 		Optional<Service> opt = serviceRepository.findById(id);
 		if(!opt.isPresent()) {
@@ -80,9 +88,11 @@ public class ServiceRestController {
 	//Delete
 	@DeleteMapping("/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
+	@JsonView(Views.Service.class)
 	public void deleteById(@PathVariable("id") Integer id) {
 		Optional<Service> opt = serviceRepository.findById(id);
 		if(opt.isPresent()) {
+			serviceToNull(opt.get());
 			serviceRepository.deleteById(id);
 		} else {
 			throw new ServiceInvalidException();	
@@ -91,6 +101,7 @@ public class ServiceRestController {
 
 	//Update
 	@PutMapping("/{id}")
+	@JsonView(Views.Service.class)
 	public ResponseEntity<Service> update(@RequestBody Service service, BindingResult br, @PathVariable("id") Integer id){
 		if (br.hasErrors()) {
 			throw new ServiceInvalidException();
@@ -106,25 +117,53 @@ public class ServiceRestController {
 		}
 	}
 
-	@JsonView(Views.Common.class)
+	@JsonView(Views.Service.class)
 	@PatchMapping("/{id}")
-	public Service update(@RequestBody Map<String, Object> fields, @PathVariable("id") Integer id) {
+	public Service update(@RequestBody Map<String, Object> attributs, @PathVariable Integer id) {
 		Optional<Service> opt = serviceRepository.findById(id);
-		if (opt.isPresent()) {
-			Service service = opt.get();
-			fields.forEach((key, value) -> {
-				Field field = ReflectionUtils.findField(Service.class, key);
-				ReflectionUtils.makeAccessible(field);
+	if (!opt.isPresent()) {
+		throw new ServiceInvalidException();
+	}
+	Service service = opt.get();
+	attributs.forEach((key, value) -> {
+		Field field = ReflectionUtils.findField(Service.class, key);
+		ReflectionUtils.makeAccessible(field);
+		if (key.equals("manager")) {
+			Map<String, Object> map = (Map<String, Object>) value;
+			if (map != null) {
+				if (map.get("id") != null) {
+					Employe manager = employeRepository.findById(Integer.parseInt(map.get("id").toString()))
+							.get();
+					service.setManager(manager);
+				} else {
+					throw new ServiceInvalidException();
+				}
+			} else {
 				ReflectionUtils.setField(field, service, value);
-			});
-			return serviceRepository.save(service);
+			}
 		}
-		else
+
+		else {
+			ReflectionUtils.setField(field, service, value);
+		}
+	});
+
+	return serviceRepository.save(service);
+
+}
+
+	private void serviceToNull(Service service)
+	{
+		List<Employe> employes = employeRepository.findAll();
+		for (Employe e : employes)
 		{
-			throw new ServiceInvalidException();
+			if (e.getService()!=null && e.getService().getId()==service.getId())
+			{
+				e.setService(null);
+				employeRepository.save(e);
+			}
 		}
 	}
-
 
 
 }
