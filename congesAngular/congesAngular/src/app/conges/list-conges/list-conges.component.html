@@ -1,11 +1,16 @@
 <h1>liste des congés</h1>
 <table class="table">
+  <select matNativeControl [(ngModel)]="conge.type" name="statut">
+            <option *ngFor="let statutConge of keys(statutConges)" [ngValue]="statutConges[statutConge]">{{statutConge}}
+            </option>
+  </select>
   <tr>
     <td>date de la demande</td>
     <td>date de début de congé</td>
     <td>date de fin de congé</td>
     <td>motif</td>
     <td>statut</td>
+
     <!--<td>
       <a
         [routerLink]="['/conge/employe', conge.demandeur.id, 'edit', conge.id]"
@@ -13,7 +18,10 @@
         >edition</a
       >
     </td>-->
+
+
   </tr>
+
   <tr *ngFor="let conge of conges">
     <td>{{ conge.dateDemande }}</td>
     <td>{{ conge.dateDebut }}</td>
@@ -28,6 +36,7 @@
       >
     </td>-->
   </tr>
+
 </table>
 <button mat-raised-button color="warn">
   <a>

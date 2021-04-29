@@ -76,7 +76,7 @@ export class CongesService {
       dateFin : conge.dateFin,
       motif : conge.motif,
       dateDemande : conge.dateDemande,
-      statut : EnumStatus.EN_COURS_DE_TRAITEMENT,
+      statut : EnumStatus['En cours de traitement'],
     };
     console.log(conge.dateDebut);
     return this.http.post<Conge>(CongesService.URL, congeFormate, {

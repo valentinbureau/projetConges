@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Conge } from 'src/app/model/conge';
-import { Login } from 'src/app/model/login';
+import { EnumStatus } from 'src/app/model/enum-status.enum';
 import { CongesService } from 'src/app/Services/conges.service';
 
 @Component({
@@ -12,13 +11,17 @@ import { CongesService } from 'src/app/Services/conges.service';
 export class ListCongesComponent implements OnInit {
 
   conges: Conge[];
-  login: string = localStorage.getItem('login');
+  login: string;
 
+  conge : Conge = new Conge();
+  keys = Object.keys;
+  statutConges = EnumStatus;
   constructor(
     private congeService: CongesService,
   ) { }
 
   ngOnInit(): void {
+    this.login = localStorage.getItem('login');
     this.list();
   }
 
