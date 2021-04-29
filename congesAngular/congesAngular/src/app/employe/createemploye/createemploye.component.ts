@@ -19,7 +19,7 @@ export class CreateemployeComponent implements OnInit {
   }
 
 
-  send(){
-    this.EmployeService.creationEmploye(this.nomCtrl.value, this.prenomCtrl.value, this.ServiceCtrl.value)
-  }
+  //send(){
+  //  this.EmployeService.creationEmploye(this.nomCtrl.value, this.prenomCtrl.value, this.ServiceCtrl.value)
+  //}
 }
