@@ -16,6 +16,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
 import { CreateloginComponent } from './auth/createlogin/createlogin.component';
 import { CreateemployeComponent } from './employe/createemploye/createemploye.component';
+import { FormControl } from '@angular/forms';
 const MY_FORMATS = {
   parse: {
     dateInput: 'DD MMMM YYYY',
@@ -48,7 +49,11 @@ const MY_FORMATS = {
     HttpClientModule,
     RouterModule,
   ],
-  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }, DatePipe],
+  providers: [
+    { provide: MAT_DATE_LOCALE, useValue: 'fr-FR' },
+    DatePipe,
+    FormControl,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

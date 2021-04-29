@@ -14,7 +14,7 @@ public interface CongeRepository extends JpaRepository<Conge, Integer>{
 	@Query("select c from Conge c where c.demandeur.login.login LIKE :login")
 	Optional<List<Conge>> findCongesByLogin(@Param("login")String login);
 
-	@Query("select c from Conge c where c.demandeur.employe.nom LIKE :nom")
+	@Query("select c from Conge c where c.demandeur.nom LIKE :nom")
 	Optional<List<Conge>> findCongesByNomEmploye(@Param("nom") String nom);
 	
 	

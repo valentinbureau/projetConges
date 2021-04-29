@@ -1,5 +1,6 @@
 import { EnumStatus } from './enum-status.enum';
 import { EnumCongé } from './enum-congé.enum';
+import { Employe } from './employe';
 
 export class Conge {
   public constructor(
@@ -10,8 +11,17 @@ export class Conge {
     private _dateFin?: Date,
     private _motif?: string,
     private _statut?: EnumStatus,
-    private _raisonRefus?: Text
+    private _raisonRefus?: Text,
+    private _demandeur?: Employe
   ) {}
+
+  public get demandeur(): Employe {
+    return this._demandeur;
+  }
+
+  public set demandeur(value: Employe) {
+    this._demandeur = value;
+  }
 
   public get id(): number {
     return this._id;

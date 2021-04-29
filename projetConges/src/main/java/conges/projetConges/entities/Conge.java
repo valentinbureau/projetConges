@@ -114,16 +114,16 @@ public class Conge {
 		return dateDebut;
 	}
 
-	public void setDateDebut(LocalDate dateDebut) {
-		this.dateDebut = dateDebut;
+	public void setDateDebut(String dateDebut) {
+		this.dateDebut = LocalDate.parse(dateDebut);
 	}
 
 	public LocalDate getDateFin() {
 		return dateFin;
 	}
 
-	public void setDateFin(LocalDate dateFin) {
-		this.dateFin = dateFin;
+	public void setDateFin(String dateFin) {
+		this.dateFin = LocalDate.parse(dateFin);
 	}
 
 	public String getMotif() {
@@ -138,8 +138,8 @@ public class Conge {
 		return dateDemande;
 	}
 
-	public void setDateDemande(LocalDate dateDemande) {
-		this.dateDemande = dateDemande;
+	public void setDateDemande(String dateDemande) {
+		this.dateDemande = LocalDate.parse(dateDemande);
 	}
 
 	public Statut getStatut() {

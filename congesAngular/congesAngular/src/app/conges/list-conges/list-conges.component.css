@@ -25,3 +25,11 @@ table tr:nth-child(odd) td {
   align-items: center;
   width: 100%;
 }
+
+.connexion-button {
+  background-color: #1b9aaa;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 24px;
+  opacity: 1;
+}
