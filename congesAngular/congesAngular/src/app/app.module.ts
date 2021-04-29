@@ -14,6 +14,7 @@ import { ListcongesManagerComponent } from './conges/listconges-manager/listcong
 import { RouterModule } from '@angular/router';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { DatePipe } from '@angular/common';
+import { CreateloginComponent } from './auth/createlogin/createlogin.component';
 const MY_FORMATS = {
   parse: {
     dateInput: 'DD MMMM YYYY',
@@ -34,6 +35,7 @@ const MY_FORMATS = {
     HomeComponent,
     ListcongesManagerComponent,
     ListCongesComponent,
+    CreateloginComponent,
   ],
   imports: [
     BrowserModule,
