@@ -16,10 +16,10 @@ import { FormControl } from '@angular/forms';
 export class DemandeComponent implements OnInit {
   @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
   conge: Conge = new Conge();
-  public dateNow = Date.now();
+  public dateNow = new Date(Date.now()).toLocaleDateString();
   keys = Object.keys;
   typeConges = EnumCongé;
-  date = new FormControl(new Date(this.dateNow));
+  date = new FormControl(new Date());
 
   constructor(
     private activatedRoute: ActivatedRoute,
