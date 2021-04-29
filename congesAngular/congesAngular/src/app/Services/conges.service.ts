@@ -26,7 +26,7 @@ export class CongesService {
   private initHeader() {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': `Basic ${localStorage.getItem('auth')}`,
+      Authorization: `Basic ${localStorage.getItem('auth')}`,
     });
   }
 
@@ -62,10 +62,10 @@ export class CongesService {
     this.initHeader();
     const congeFormate = {
       typeConge: conge.type,
-      dateDebut: conge.dateDebut,
-      dateFin: conge.dateFin,
+      dateDebut: conge.dateDebut.toLocaleDateString(),
+      dateFin: conge.dateFin.toLocaleDateString(),
       motif: conge.motif,
-      dateDemande: conge.dateDemande,
+      dateDemande: conge.dateDemande.toLocaleDateString(),
       statut: EnumStatus['En cours de traitement'],
     };
     //console.log(conge.dateDebut);

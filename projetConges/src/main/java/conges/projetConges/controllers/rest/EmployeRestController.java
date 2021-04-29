@@ -161,11 +161,11 @@ public class EmployeRestController {
 	{
 		List<Service> services = serviceRepository.findAll();
 		for (Service s : services)
-		{
+		https://github.com/valentinbureau/projetConges/blob/develop/projetConges/src/main/java/conges/projetConges/controllers/rest/EmployeRestController.java{
 			if (s.getManager().getId()==manager.getId())
 			{
 				s.setManager(null);
 			}
 		}
 	}
-}
+
