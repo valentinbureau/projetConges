@@ -18,39 +18,36 @@
       </div>
 
       <div *ngIf="idArrayConge.includes(employe.id)">
-        <mat-card>
-          <div *ngFor="let conge of employe.conges">
+        <table class="table">
           <tr>
             <th>date de la demande</th>
-            <th>date de début de congé</th>
-            <th>date de fin de congé</th>
-            <th>motif</th>
+            <th>date de début</th>
+            <th>date de fin</th>
+            <th>type</th>
             <th>statut</th>
+            <th>motif</th>
           </tr>
-          <tr>
+          <tr *ngFor="let conge of employe.conges">
+
           <td>{{conge.dateDemande}}</td>
           <td>{{conge.dateDebut}}</td>
           <td>{{conge.dateFin}}</td>
-          <td>{{conge.type}}</td>
+          <td>{{conge.typeConge}}</td>
           <td>{{conge.statut}}</td>
           <td>{{conge.motif}}</td>
-        </tr>
 
-          <div>
             <td>
-          <a
-            class="btn btn-outline-success"
+          <button class="btn connexion-button mr-2"><a
             (click)="Accept(conge)"
             >Accepter</a
-          >&nbsp;
+          ></button>&nbsp;
+          <button class="btn delete-button mr-2">
           <a
-            class="btn btn-outline-danger"
             (click)="Decline(conge)"
             >Refuser</a
-          ></td>
-        </div>
-        </div>
-      </mat-card>
+          ></button></td></tr>
+
+      </table>
         </div>
      </div>
     </div>
