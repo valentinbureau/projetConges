@@ -17,4 +17,9 @@ export class HomeComponent implements OnInit {
     this.employe = localStorage.getItem('employe');
     console.log(this.employe);
   }
+
+  click(){
+    localStorage.clear();
+    this.ngOnInit();
+  }
 }

@@ -35,4 +35,11 @@ export class ServiceEmployesService {
       headers: this.httpHeaders,
     });
   }
+
+  public getAllService(): Observable<Service[]> {
+    this.initHeader();
+    return this.http.get<Service[]>(ServiceEmployesService.URL, {
+      headers: this.httpHeaders,
+    });
+  }
 }

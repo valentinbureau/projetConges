@@ -1,37 +1,51 @@
 <mat-card>
   Gestion de congés
   <nav>
-    <button mat-raised-button color="accent">
-      <a class="btn btn-link" routerLink="/login" routerLinkActive="active"
-        >Se connecter</a
-      >
-    </button>
-    <button mat-raised-button color="accent">
-      <a
-        class="btn btn-link"
-        color="white"
-        routerLink="/demande/employe/{{ login }}"
-        routerLinkActive="active"
-        >Demander un congé</a
-      >
-    </button>
-    <button mat-raised-button color="accent">
-      <a
-        class="btn btn-link"
-        routerLink="/inscription"
-        routerLinkActive="active"
-        >Creation employé(admin)</a
-      >
-    </button>
+    <div class="navbar">
+      <div>
+        <button mat-raised-button color="accent">
+          <a class="btn btn-link" routerLink="/login" routerLinkActive="active"
+            >Se connecter</a
+          >
+        </button>
+        <button mat-raised-button color="accent">
+          <a
+            class="btn btn-link"
+            color="white"
+            routerLink="/demande/employe/{{ login }}"
+            routerLinkActive="active"
+            >Demander un congé</a
+          >
+        </button>
+        <button mat-raised-button color="accent">
+          <a
+            class="btn btn-link"
+            routerLink="/inscription"
+            routerLinkActive="active"
+            >Creation employé(admin)</a
+          >
+        </button>
 
-    <button mat-raised-button color="accent">
-      <a
-        class="btn btn-link"
-        routerLink="/conge/manager"
-        routerLinkActive="active"
-        >Gerer demandes de congés(manager)</a
-      >
-    </button>
+        <button mat-raised-button color="accent">
+          <a
+            class="btn btn-link"
+            routerLink="/conge/manager"
+            routerLinkActive="active"
+            >Gerer demandes de congés(manager)</a
+          >
+        </button>
+      </div>
+
+      <div *ngIf="login">
+        <img mat-button [matMenuTriggerFor]="menu" class="img-navbar" src="https://img2.freepng.fr/20180627/wio/kisspng-computer-icons-user-profile-avatar-jain-icon-5b332c5add9336.0201786915300803469076.jpg" alt="">
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item>Modifier Profil</button>
+        <button mat-menu-item>Ajouter Employé</button>
+        <button mat-menu-item (click)='click()'>Se déconnecter</button>
+      </mat-menu>
+      </div>
+
+    </div>
   </nav>
 </mat-card>
 <router-outlet></router-outlet>

@@ -67,6 +67,13 @@ public class AuthController {
 		return opt.isPresent();
 	}
 	
+	//LoginID
+	@JsonView(Views.Common.class)
+	@GetMapping("/inscriptionid/{login}")
+	public Optional<Login> getLoginId(@PathVariable("login") String login) {
+		Optional<Login> opt= loginRepository.findByLogin(login);
+		return opt;
+	}
 	//Create
 	@PostMapping("")
 	public ResponseEntity<Login> createLogin(@Valid @RequestBody Login login, BindingResult br, 
