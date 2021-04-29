@@ -1,60 +1,89 @@
 <div id="container" class="container form">
   <h2>Demande de congés</h2>
   <mat-card>
-  <mat-form-field color="accent" appearance="fill" >
-    <mat-label>Date de la demande</mat-label>
-    <input matInput [matDatepicker]="dateDemande" id="dateDemande" [(ngModel)]="conge.dateDemande" class="form-control">{{dateNow |date : "dd/MM/yyyy"}}
-    <mat-datepicker-toggle matSuffix [for]="dateDemande"></mat-datepicker-toggle>
-    <mat-datepicker #dateDemande></mat-datepicker>
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>Date de la demande</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dateDemande"
+        id="dateDemande"
+        [(ngModel)]="conge.dateDemande"
+        class="form-control"
+      />{{ dateNow | date: "dd/MM/yyyy" }}
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="dateDemande"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #dateDemande></mat-datepicker>
     </mat-form-field>
   </mat-card>
 
-<mat-card>
-<mat-form-field color="accent" appearance="fill">
-  <mat-label>Date de debut</mat-label>
-  <input matInput [matDatepicker]="dateDebut" id="dateDebut" [(ngModel)]="conge.dateDebut" class="form-control" >
-  <mat-datepicker-toggle matSuffix [for]="dateDebut"></mat-datepicker-toggle>
-  <mat-datepicker #dateDebut></mat-datepicker>
-</mat-form-field>&nbsp;
+  <mat-card>
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>Date de debut</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dateDebut"
+        id="dateDebut"
+        [(ngModel)]="conge.dateDebut"
+        class="form-control"
+      />
+      <mat-datepicker-toggle
+        matSuffix
+        [for]="dateDebut"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #dateDebut></mat-datepicker> </mat-form-field
+    >&nbsp;
 
+    <mat-form-field color="accent" appearance="fill">
+      <mat-label>Date de fin</mat-label>
+      <input
+        matInput
+        [matDatepicker]="dateFin"
+        id="dateFin"
+        [(ngModel)]="conge.dateFin"
+        class="form-control"
+      />
+      <mat-datepicker-toggle matSuffix [for]="dateFin"></mat-datepicker-toggle>
+      <mat-datepicker #dateFin></mat-datepicker>
+    </mat-form-field>
+  </mat-card>
 
-<mat-form-field color="accent" appearance="fill">
-  <mat-label>Date de fin</mat-label>
-  <input matInput [matDatepicker]="dateFin" id="dateFin" [(ngModel)]="conge.dateFin" class="form-control">
-  <mat-datepicker-toggle matSuffix [for]="dateFin"></mat-datepicker-toggle>
-  <mat-datepicker #dateFin></mat-datepicker>
-</mat-form-field>
-</mat-card>
+  <mat-card>
+    <div>
+      <mat-form-field appearance="fill">
+        <mat-label>Type de congés :</mat-label>
+        <select matNativeControl [(ngModel)]="conge.type" name="type">
+          <option
+            *ngFor="let typeConge of keys(typeConges)"
+            [ngValue]="typeConges[typeConge]"
+          >
+            {{ typeConge }}
+          </option>
+        </select> </mat-form-field
+      >&nbsp;&nbsp;&nbsp;
 
-
-
-<mat-card>
-      <div>
-        <mat-form-field appearance="fill">
-          <mat-label>Type de congés :</mat-label>
-          <select matNativeControl [(ngModel)]="conge.type" name="type">
-            <option *ngFor="let typeConge of keys(typeConges)" [ngValue]="typeConges[typeConge]">{{typeConge}}
-            </option>
-          </select>
-       </mat-form-field>&nbsp;&nbsp;&nbsp;
-
-    <mat-form-field>
-      <mat-label>Motif du congé demandé</mat-label>
-      <input matInput id="dateFin" [(ngModel)]="conge.motif" class="form-control">
-  </mat-form-field>
-  </div>
-  <p>{{conge.type}}</p>
-  <div class="form-group">
-
-    <button class="btn connexion-button" (click)="save()">Soumettre ma demande</button>&nbsp;
-    <a routerLink="/home" routerLinkActive="active"
-        class="btn btn-outline-warning"
-        >Annuler</a>
-  </div>
-
-
-
-
-
-      </mat-card>
+      <mat-form-field>
+        <mat-label>Motif du congé demandé</mat-label>
+        <input
+          matInput
+          id="dateFin"
+          [(ngModel)]="conge.motif"
+          class="form-control"
+        />
+      </mat-form-field>
     </div>
+    <p>{{ conge.type }}</p>
+    <div class="form-group">
+      <button class="btn connexion-button" mat-raised-button (click)="save()">
+        Soumettre ma demande</button
+      >&nbsp;
+      <a
+        routerLink="/home"
+        routerLinkActive="active"
+        class="btn btn-outline-warning"
+        >Annuler</a
+      >
+    </div>
+  </mat-card>
+</div>
