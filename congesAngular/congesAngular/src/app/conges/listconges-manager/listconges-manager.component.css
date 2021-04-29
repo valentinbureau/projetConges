@@ -6,7 +6,7 @@
 }
 
 .connexion-button {
-  background-color: #f5b858;
+  background-color: #1b9aaa;
   color: white;
   border-radius: 20px;
   padding: 8px 24px;
@@ -16,4 +16,28 @@
 .connexion-button:hover {
   opacity: 0.8;
   transition: background-color 0.3s ease;
+}
+
+.conge-button {
+  background-color: #f4b433;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 24px;
+  opacity: 1;
+}
+
+.conge-button:hover {
+  opacity: 0.8;
+  transition: background-color 0.3s ease;
+}
+
+.avatar-employe {
+  border-radius: 50%;
+  width: 50px;
+}
+
+.info-employe {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }

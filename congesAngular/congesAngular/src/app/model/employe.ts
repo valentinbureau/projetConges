@@ -1,3 +1,4 @@
+import { Conge } from './conge';
 import { Service } from "./service";
 
 export class Employe {
@@ -7,8 +8,7 @@ public constructor(
   private _nom?:string,
   private _prenom?:string,
   private _service?:Service,
-
-
+  private _conges?: Conge[],
 
 )
 {}
@@ -44,6 +44,13 @@ public constructor(
     this._service = service;
   }
 
+  public get conges(): Conge[] {
+    return this._conges;
+  }
+
+  public set conges(conges: Conge[]) {
+    this._conges = conges;
+  }
 }
 
 
