@@ -1,0 +1,38 @@
+.form {
+  width: 50%;
+  border: 0.5px solid #f1f2f4;
+  margin: 70px auto;
+  border-radius: 5px;
+  padding: 50px;
+  background-color: white;
+}
+
+.btn-separator {
+  margin: 20px 0;
+  border-bottom: 1px solid #606060;
+  text-align: center;
+  line-height: 0.1em;
+}
+
+.btn-separator span {
+  background-color: white;
+  padding: 10px;
+}
+
+.connexion-button {
+  background-color: #f5b858;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 24px;
+  opacity: 1;
+}
+
+.connexion-button:hover {
+  opacity: 0.8;
+  transition: background-color 0.3s ease;
+}
+
+a {
+  text-decoration: none !important;
+  color: black;
+}

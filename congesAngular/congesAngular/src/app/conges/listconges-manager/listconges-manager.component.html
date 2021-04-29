@@ -12,8 +12,15 @@
           <button class="btn conge-button" (click)='clickConge(employe.id)'>Congés</button>
         </div>
       </div>
-      <div *ngIf="idArrayDemande.includes(employe.id)">TEST</div>
-      <div *ngIf="idArrayConge.includes(employe.id)">TEST</div>
+      <div *ngIf="idArrayDemande.includes(employe.id)">
+        <div *ngFor="let conge of employe.conges">
+        </div>
+      </div>
+      <div *ngIf="idArrayConge.includes(employe.id)">
+        <div *ngFor="let conge of employe.conges">
+          {{conge.id}}
+        </div>
+      </div>
     </div>
   </div>
 </div>
