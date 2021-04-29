@@ -10,26 +10,24 @@ import { CongesService } from 'src/app/Services/conges.service';
   styleUrls: ['./list-conges.component.css']
 })
 export class ListCongesComponent implements OnInit {
-  //conge : Conge = new Conge();
   conges: Conge[];
   congesFiltres: Conge[] = [];
   login: string;
+
+  //filtre des checkbox
   filter = { acceptee: true, enCours: false, refusee: false }
 
-  conge = new FormControl();
-
-  keys = Object.keys;
-  statutConges: string[] = [EnumStatus.Acceptée,EnumStatus['En cours de traitement'],EnumStatus.Refusée];
-  statutDemande: string[];
   constructor(
     private congeService: CongesService,
   ) { }
 
   ngOnInit(): void {
+    //Récupération du login
     this.login = localStorage.getItem('login');
     this.list();
   }
 
+  //Listing des congés de l'employé connecté
   private list() {
     console.log(this.login);
     this.congeService.findAllbyLogin(this.login).subscribe((data) => {
