@@ -1,3 +1,4 @@
+
 <h1>liste des congés</h1>
 <table class="table">
   <select matNativeControl [(ngModel)]="conge.type" name="statut">
@@ -10,19 +11,10 @@
     <td>date de fin de congé</td>
     <td>motif</td>
     <td>statut</td>
-
-    <!--<td>
-      <a
-        [routerLink]="['/conge/employe', conge.demandeur.id, 'edit', conge.id]"
-        class="btn btn-outline-info"
-        >edition</a
-      >
-    </td>-->
-
-
   </tr>
 
   <tr *ngFor="let conge of conges">
+    <div>
     <td>{{ conge.dateDemande }}</td>
     <td>{{ conge.dateDebut }}</td>
     <td>{{ conge.dateFin }}</td>
@@ -35,12 +27,11 @@
         >edition</a
       >
     </td>-->
+  </div>
   </tr>
 
 </table>
 <button mat-raised-button color="warn">
-  <a>
-    [routerLink]="['/demande/employe/{{ login }}']"
-    routerLinkActive="router-link-active"
-  </a>
+  <a routerLink="/demande/employe/{{login}}" >faire une demande</a>
 </button>
+

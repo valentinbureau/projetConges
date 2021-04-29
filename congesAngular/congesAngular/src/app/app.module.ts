@@ -9,6 +9,7 @@ import { DemandeComponent } from './demande/demande.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
+import { ListcongesManagerComponent } from './conges/listconges-manager/listconges-manager.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HomeComponent } from './home/home.component';
     DemandeComponent,
     LoginComponent,
     HomeComponent,
-    ListcongesManagerComponent
+    ListcongesManagerComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,

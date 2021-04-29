@@ -9,11 +9,11 @@ import { CongesService } from 'src/app/Services/conges.service';
   styleUrls: ['./list-conges.component.css']
 })
 export class ListCongesComponent implements OnInit {
-
+  conge : Conge = new Conge();
   conges: Conge[];
   login: string;
 
-  conge : Conge = new Conge();
+
   keys = Object.keys;
   statutConges = EnumStatus;
   constructor(
