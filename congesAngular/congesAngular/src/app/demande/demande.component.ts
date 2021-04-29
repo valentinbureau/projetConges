@@ -19,7 +19,7 @@ export class DemandeComponent implements OnInit {
   public dateNow = Date.now();
   keys = Object.keys;
   typeConges = EnumCongé;
-  date1 = new FormControl(this.dateNow);
+  date = new FormControl(new Date(this.dateNow));
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -49,9 +49,16 @@ export class DemandeComponent implements OnInit {
     } else {
       let dateDebut = this.conge.dateDebut.toLocaleDateString();
       console.log(this.conge.dateDebut);
-      console.log(dateDebut);
+      console.log(this.conge.dateFin);
+      this.conge.dateDemande = new Date(Date.now());
+      console.log(Date.parse(dateDebut));
+      console.log(this.conge.dateDemande.getDate);
+      console.log(typeof this.conge.dateDemande.toLocaleDateString);
+      console.log(JSON.stringify(this.conge));
+      console.log('---------------------------');
+      console.log(typeof this.conge.dateDebut);
       this.CongesService.insert(this.conge).subscribe((data) => {
-        this.router.navigate(['/conge']);
+        this.router.navigate(['conge/employe/:login']);
       });
     }
   }

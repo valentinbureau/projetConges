@@ -1,3 +1,4 @@
+import { CreateloginComponent } from './auth/createlogin/createlogin.component';
 import { ListcongesManagerComponent } from './conges/listconges-manager/listconges-manager.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'demande/employe/:login', component: DemandeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
+  { path: 'inscription', component: CreateloginComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 

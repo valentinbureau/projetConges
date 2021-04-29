@@ -9,8 +9,8 @@
         id="dateDemande"
         [(ngModel)]="conge.dateDemande"
         class="form-control"
-        placeholder="From Date"
-        [formControl]="date1"
+        readonly
+        [formControl]="date"
       />
       <mat-datepicker-toggle
         matSuffix

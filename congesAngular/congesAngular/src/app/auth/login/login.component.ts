@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         localStorage.setItem('login', this.login.login);
         this.AuthenticationService.getEmploye(this.login).subscribe((data) => {
           localStorage.setItem('employe', JSON.stringify(data));
+          console.log(localStorage.getItem('employe'));
         });
       },
       (error) => {

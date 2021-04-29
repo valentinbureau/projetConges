@@ -48,13 +48,13 @@ public class CongeRestController {
 	//Create
 	@PostMapping("")
 	@JsonView(Views.Conge.class)
-	public ResponseEntity<Conge> createEmploye(@Valid @RequestBody Conge conge, BindingResult br, 
+	public ResponseEntity<Conge> createConge(@Valid @RequestBody Conge conge, BindingResult br, 
 				UriComponentsBuilder uCB){
 		if (br.hasErrors()) {
 			throw new CongeInvalidException();
 		}
 		conge = congeRepository.save(conge);
-		URI uri = uCB.path("/api/employe/{id}").buildAndExpand(conge.getId()).toUri();
+		URI uri = uCB.path("/api/conge/{id}").buildAndExpand(conge.getId()).toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 		return new ResponseEntity<Conge>(conge, headers, HttpStatus.CREATED);
