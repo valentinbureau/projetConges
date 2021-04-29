@@ -1,3 +1,4 @@
+import { ListCongesComponent } from './conges/list-conges/list-conges.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared-module';
 import { NgModule } from '@angular/core';
@@ -18,6 +19,7 @@ import { ListcongesManagerComponent } from './conges/listconges-manager/listcong
     LoginComponent,
     HomeComponent,
     ListcongesManagerComponent,
+    ListCongesComponent
   ],
   imports: [
     BrowserModule,
