@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
         this.message = "Compte inconnu ou mauvais mot de passe"
       }
     )
+
   }
 
 }

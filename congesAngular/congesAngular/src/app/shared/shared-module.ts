@@ -20,10 +20,7 @@ const ANGULAR_MATERIAL = [
 
 @NgModule({
   declarations: [],
-  imports: [...ANGULAR_MATERIAL,FormsModule],
-  exports: [FormsModule,...ANGULAR_MATERIAL]
+  imports: [...ANGULAR_MATERIAL, FormsModule],
+  exports: [FormsModule, ...ANGULAR_MATERIAL],
 })
-
-
-export class SharedModule {
-}
+export class SharedModule {}
