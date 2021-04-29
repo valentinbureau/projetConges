@@ -5,9 +5,15 @@ import { Login } from './../../model/login';
 import { CongesService } from './../../services/conges.service';
 import { Employe } from './../../model/employe';
 import { ServiceEmployesService } from './../../services/service-employes.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { Service } from 'src/app/model/service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
+
+export interface DialogData {
+
+  refus: string;
+}
 
 @Component({
   selector: 'app-listconges-manager',
@@ -78,17 +84,64 @@ export class ListcongesManagerComponent implements OnInit {
 public Accept(conge:Conge){
    conge.statut=EnumStatus.Acceptée;
    this.congesService.update(conge).subscribe((res) => {
-});}
+  });
+}
 
 public Decline(conge:Conge){
+  //openDialog();
   conge.statut=EnumStatus.Refusée;
   this.congesService.update(conge).subscribe((res) => {
-});
+  });
+}
+
 
 
 }
 
+
+/**
+ * @title Dialog Overview
+ */
+@Component({
+  selector: 'dialog-overview-example',
+  templateUrl: 'dialog-overview-example.html',
+})
+export class DialogOverviewExample {
+
+
+  refus: string;
+
+  constructor(public dialog: MatDialog) {}
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
+      width: '250px',
+      data: {refus: this.refus}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.refus = result;
+    });
   }
+
+}
+
+@Component({
+  selector: 'dialog-overview-example-dialog',
+  templateUrl: 'dialog-overview-example-dialog.html',
+})
+export class DialogOverviewExampleDialog {
+
+  constructor(
+    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
+}
 
 
 

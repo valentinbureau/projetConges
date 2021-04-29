@@ -3,7 +3,7 @@
 
 
 <mat-card class="container">
-    <h1>liste des congés de {{login}}</h1>
+    <h1>Liste des congés de {{login}}</h1>
   <mat-card-content class="item">
 
     <section class="example-section">
@@ -21,7 +21,9 @@
       <th >date de la demande</th>
       <th >date de début de congé</th>
       <th >date de fin de congé</th>
+      <th >type de Congé</th>
       <th >motif</th>
+
     </tr>
 
     <tr *ngFor="let conge of congesFiltres">
@@ -29,6 +31,7 @@
       <td>{{ conge.dateDemande }}</td>
       <td>{{ conge.dateDebut }}</td>
       <td>{{ conge.dateFin }}</td>
+      <td>{{ conge.typeConge }}<td>
       <td>{{ conge.motif }}</td>
 
     </tr>
@@ -38,8 +41,8 @@
       <a routerLink="/demande/employe/{{login}}" ></a>
     </button>
 
-  </mat-card-actions>
-</mat-card>
+    </mat-card-actions>
+  </mat-card>
 
 
 

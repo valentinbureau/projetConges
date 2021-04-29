@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Hi {{data.refus}}</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Raison Refus</mat-label>
+    <input matInput [(ngModel)]="data.refus">
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.refus" cdkFocusInitial>Ok</button>
+</div>

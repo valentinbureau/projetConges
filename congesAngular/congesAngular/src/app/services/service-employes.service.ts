@@ -35,4 +35,11 @@ export class ServiceEmployesService {
       headers: this.httpHeaders,
     });
   }
+
+  public getManagerLogin(id: number){
+    this.initHeader();
+    return this.http.get<Employe>(ServiceEmployesService.URL + '/manager/' + id, {
+      headers: this.httpHeaders,
+    });
+  }
 }

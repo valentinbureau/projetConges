@@ -54,6 +54,12 @@ public class ServiceRestController {
 	public ResponseEntity<List<Service>> allServices(){
 		return new ResponseEntity<List<Service>>(serviceRepository.findAll(),HttpStatus.OK);
 	}
+	
+	@GetMapping("/manager/{id}")
+	@JsonView(Views.Service.class)
+	public ResponseEntity<Employe> getManager(@PathVariable("id") Integer id ){
+		return new ResponseEntity<Employe>(serviceRepository.getManager(id),HttpStatus.OK);
+	}
 
 	//Create
 	@PostMapping("")

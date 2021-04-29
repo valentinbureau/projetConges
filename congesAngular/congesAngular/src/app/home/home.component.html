@@ -1,30 +1,26 @@
 <mat-card>
   Gestion de congés
   <nav>
-    <button mat-raised-button color="accent">
-      <a class="btn btn-link" routerLink="/login" routerLinkActive="active"
-        >Se connecter</a
-      >
-    </button>
-    <button mat-raised-button color="accent">
+
+    <button mat-raised-button color="accent" *ngIf="isAuth== true">
       <a
         class="btn btn-link"
         color="white"
-        routerLink="/demande/employe/{{ login }}"
+        routerLink="/conge/employe/{{ login }}"
         routerLinkActive="active"
-        >Demander un congé</a
+        >Mes congés</a
       >
     </button>
-    <button mat-raised-button color="accent">
+    <button mat-raised-button color="accent" *ngIf="isAdmin()" >
       <a
         class="btn btn-link"
         routerLink="/inscription"
         routerLinkActive="active"
-        >Creation employé(admin)</a
+        >Creation employé</a
       >
     </button>
 
-    <button mat-raised-button color="accent">
+    <button mat-raised-button color="accent" *ngIf="isManager">
       <a
         class="btn btn-link"
         routerLink="/conge/manager"

@@ -43,17 +43,10 @@ export class ListCongesComponent implements OnInit {
       || (c.statut === EnumStatus['En cours de traitement'] && this.filter.enCours)
       || (c.statut === EnumStatus.Refusée && this.filter.refusee))
 
-
-        /*console.log('enumAcceptee',EnumStatus['En cours de traitement']);
-        console.log('statut',c.statut);
-        console.log(c);*/
     });
     console.log("c'est filtré?", this.congesFiltres);
     console.log(this.filter.acceptee)
   }
-  /*add(statutconge: string) {
-    this.statutDemande.push(statutconge);
-    this.ngOnInit();
-  }*/
+
 
 }
