@@ -26,7 +26,7 @@ export class CongesService {
   private initHeader() {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-      // Authorization: `Basic ${localStorage.getItem('auth')},
+      'Authorization': `Basic ${localStorage.getItem('auth')}`,
     });
   }
 
