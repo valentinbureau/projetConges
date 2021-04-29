@@ -1,3 +1,27 @@
 table tr:nth-child(even) td {
-  background-color: wheat;
+  background-color: khaki;
+}
+
+table tr:nth-child(odd) td {
+  background-color: skyblue;
+}
+
+.item {
+  text-align: center;
+}
+.example-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.example-margin {
+  margin: 1%;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

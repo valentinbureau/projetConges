@@ -92,7 +92,7 @@ public class CongeRestController {
 			throw new CongeInvalidException();
 		}
 		Optional<Conge> opt = congeRepository.findById(id);
-		if (!opt.isPresent()) {
+		if (opt.isPresent()) {
 			Conge congeEnBase = opt.get();
 			conge.setVersion(congeEnBase.getVersion());
 			conge.setId(id);
@@ -107,6 +107,19 @@ public class CongeRestController {
 	public ResponseEntity<List<Conge>> allCongesByEmploye(@PathVariable("login") String login){
 		
 		Optional<List<Conge>> opt = congeRepository.findCongesByLogin(login);
+		System.out.println(opt.get());
+		if(!opt.isPresent()) {
+			throw new CongeInvalidException();
+		}
+		return new ResponseEntity<List<Conge>>(opt.get(), HttpStatus.OK);
+	}
+	
+	//GetConge By id_employe
+	@JsonView(Views.Conge.class)
+	@GetMapping("/employe/login/{nom}")
+	public ResponseEntity<List<Conge>> allCongesByNomEmploye(@PathVariable("nom") String nom){
+		
+		Optional<List<Conge>> opt = congeRepository.findCongesByNomEmploye(nom);
 		System.out.println(opt.get());
 		if(!opt.isPresent()) {
 			throw new CongeInvalidException();

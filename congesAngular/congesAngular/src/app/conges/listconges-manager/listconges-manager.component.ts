@@ -1,8 +1,13 @@
+import { EnumStatus } from './../../model/enum-status.enum';
+import { Conge } from './../../model/conge';
+import { Observable } from 'rxjs';
+import { Login } from './../../model/login';
+import { CongesService } from './../../services/conges.service';
 import { Employe } from './../../model/employe';
 import { ServiceEmployesService } from './../../services/service-employes.service';
 import { Component, OnInit } from '@angular/core';
 import { Service } from 'src/app/model/service';
-import { Conge } from 'src/app/model/conge';
+
 
 @Component({
   selector: 'app-listconges-manager',
@@ -12,18 +17,27 @@ import { Conge } from 'src/app/model/conge';
 export class ListcongesManagerComponent implements OnInit {
   service: Service;
   conge: Conge[];
+  listConge : Conge[];
+  conges : Conge = new Conge();
   congePresent: string;
   employe: Employe;
   idArrayConge : number[];
   idArrayDemande : number[];
+  login: string;
+  nom : string;
 
-  constructor(private serviceEmployesService : ServiceEmployesService) { }
+  constructor(private serviceEmployesService : ServiceEmployesService,
+    private congesService : CongesService,) { }
 
   ngOnInit(): void {
     this.employe = JSON.parse(localStorage.getItem("employe"));
     this.service = this.employe.service;
+    this.nom=this.employe.nom;
     this.serviceEmployesService.getService(this.service.id).subscribe((data) => {
       this.service = data;
+      this.login = localStorage.getItem('login');
+
+
     });
     this.idArrayConge = [];
     this.idArrayDemande = [];
@@ -37,7 +51,20 @@ export class ListcongesManagerComponent implements OnInit {
         this.idArrayDemande = this.idArrayDemande.filter( number => id != number );
       }
       this.idArrayConge.push(id);
-    }
+    }}
+
+  private list(e:Employe) {
+    this.congesService.findAllbyNomEmploye(e.nom).subscribe((data) => {
+      this.listConge= data;
+      });
+
+  }
+
+  private getService(){
+    console.log("hello");
+
+    console.log(localStorage.getItem('auth'))
+    console.log(this.service);
   }
 
   public clickDemande(id: number) {
@@ -49,5 +76,25 @@ export class ListcongesManagerComponent implements OnInit {
       }
       this.idArrayDemande.push(id);
     }
-  }
+
+      this.congePresent === null;
+    }
+
+
+public Accept(c:Conge){
+   c.statut=EnumStatus.Acceptée;
+   this.congesService.update(c).subscribe((res) => {
+});}
+
+public Decline(c:Conge){
+  c.statut=EnumStatus.Refusée;
+  this.congesService.update(c).subscribe((res) => {
+});
+
+
 }
+
+  }
+
+
+

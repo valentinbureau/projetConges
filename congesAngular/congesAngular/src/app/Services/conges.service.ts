@@ -82,4 +82,11 @@ export class CongesService {
       headers: this.httpHeaders,
     });
   }
+
+  public findAllbyNomEmploye(nom: string): Observable<Conge[]> {
+    this.initHeader();
+    return this.http.get<Conge[]>(CongesService.URL + '/employe/login/' + nom, {
+      headers: this.httpHeaders,
+    });
+  }
 }

@@ -73,4 +73,16 @@ export class CreateloginComponent implements OnInit {
       this.route.navigate(['/login']);
     })
   }
+
+  loginIsInvalid(): boolean {
+    return this.loginCtrl.dirty && this.loginCtrl.invalid;
+  }
+
+  passwordIsInvalid(): boolean {
+    return this.passwordCtrl.dirty && this.passwordCtrl.invalid;
+  }
+
+  passwordGroupIsInvalid() {
+    return this.passwordGroup.dirty && this.passwordGroup.invalid;
+  }
 }
