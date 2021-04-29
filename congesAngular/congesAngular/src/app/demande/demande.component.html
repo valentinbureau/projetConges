@@ -1,7 +1,7 @@
 <div id="container" class="container form">
   <h2>Demande de congés</h2>
   <mat-card>
-  <mat-form-field color="accent" appearance="fill">
+  <mat-form-field color="accent" appearance="fill" >
     <mat-label>Date de la demande</mat-label>
     <input matInput [matDatepicker]="dateDemande" id="dateDemande" [(ngModel)]="conge.dateDemande" class="form-control">{{dateNow |date : "dd/MM/yyyy"}}
     <mat-datepicker-toggle matSuffix [for]="dateDemande"></mat-datepicker-toggle>
@@ -12,7 +12,7 @@
 <mat-card>
 <mat-form-field color="accent" appearance="fill">
   <mat-label>Date de debut</mat-label>
-  <input matInput [matDatepicker]="dateDebut" id="dateDebut" [(ngModel)]="conge.dateDebut" class="form-control">
+  <input matInput [matDatepicker]="dateDebut" id="dateDebut" [(ngModel)]="conge.dateDebut" class="form-control" >
   <mat-datepicker-toggle matSuffix [for]="dateDebut"></mat-datepicker-toggle>
   <mat-datepicker #dateDebut></mat-datepicker>
 </mat-form-field>&nbsp;
@@ -47,9 +47,7 @@
   <div class="form-group">
 
     <button class="btn connexion-button" (click)="save()">Soumettre ma demande</button>&nbsp;
-    <a
-        routerLink="/conge"
-        routerLinkActive="active"
+    <a routerLink="/home" routerLinkActive="active"
         class="btn btn-outline-warning"
         >Annuler</a>
   </div>

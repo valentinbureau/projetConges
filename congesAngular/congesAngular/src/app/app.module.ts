@@ -1,4 +1,3 @@
-import { ListcongesManagerComponent } from './conges/listconges-manager/listconges-manager.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared-module';
 import { NgModule } from '@angular/core';
@@ -11,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,16 +17,15 @@ import { HomeComponent } from './home/home.component';
     LoginComponent,
     HomeComponent,
     ListcongesManagerComponent
-  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
     SharedModule,
-    HttpClientModule
+    HttpClientModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

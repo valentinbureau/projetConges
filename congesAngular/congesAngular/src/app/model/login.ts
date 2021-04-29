@@ -2,6 +2,7 @@ import { EnumRole } from './enum-role.enum';
 import { Employe } from './employe';
 
 export class Login {
+  private _id: number;
   private _login: string;
   private _password: string;
   private _role:EnumRole;
@@ -12,6 +13,13 @@ export class Login {
     this._password = password;
   }
 
+  public get id(): number {
+    return this._id;
+  }
+
+  public set id(value: number) {
+    this._id = value;
+  }
 
   public get login(): string {
     return this._login;
