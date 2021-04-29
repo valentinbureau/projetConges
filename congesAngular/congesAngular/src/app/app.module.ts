@@ -11,6 +11,20 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { ListcongesManagerComponent } from './conges/listconges-manager/listconges-manager.component';
+import { RouterModule } from '@angular/router';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD MMMM YYYY',
+  },
+  display: {
+    dateInput: 'DD MMMM YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -19,7 +33,7 @@ import { ListcongesManagerComponent } from './conges/listconges-manager/listcong
     LoginComponent,
     HomeComponent,
     ListcongesManagerComponent,
-    ListCongesComponent
+    ListCongesComponent,
   ],
   imports: [
     BrowserModule,
@@ -28,8 +42,9 @@ import { ListcongesManagerComponent } from './conges/listconges-manager/listcong
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
+    RouterModule,
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: 'fr-FR' }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
