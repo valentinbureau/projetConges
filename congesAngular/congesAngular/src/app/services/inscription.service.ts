@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -7,12 +7,31 @@ import { Observable } from 'rxjs';
 })
 export class InscriptionService {
 
-  constructor(private http: HttpClient) { }
+  private httpHeaders: HttpHeaders;
+
+  constructor(private http: HttpClient) {
+    this.initHeader;
+  }
+
+  private initHeader() {
+    this.httpHeaders = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Basic ${localStorage.getItem('auth')}`,
+    });
+  }
+
 
   public inscription(login: string, password: string): Observable<void> {
+    console.log(login);
+    console.log(password);
+    const LoginFormat = {
+      login : login,
+      password: password,
+    }
     return this.http.post<void>(
       'http://localhost:8080/vacances/api/auth',
-      { login : login, password: password }
+      LoginFormat,
+      { headers: this.httpHeaders },
     );
   }
 
