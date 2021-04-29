@@ -50,19 +50,4 @@ export class ListcongesManagerComponent implements OnInit {
       this.idArrayDemande.push(id);
     }
   }
-
-  private getService(){
-    console.log("hello");
-
-    console.log(localStorage.getItem('auth'))
-    console.log(this.service);
-  }
-
-  private voirConges(id: number){
-    if (this.congePresent === "ok"){
-      this.conge = [new Conge()];
-    } else {
-      this.congePresent === null;
-    }
-  }
 }
