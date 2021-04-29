@@ -7,10 +7,9 @@
         matInput
         [matDatepicker]="dateDemande"
         id="dateDemande"
-        [(ngModel)]="conge.dateDemande"
         class="form-control"
-        readonly
         [formControl]="date"
+        [(ngModel)]="conge.dateDemande"
       />
       <mat-datepicker-toggle
         matSuffix
