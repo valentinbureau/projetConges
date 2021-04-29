@@ -47,7 +47,7 @@ public class Employe {
 	private Service service;
 	
 	@OneToMany(mappedBy="demandeur")
-	@JsonView(Views.Employe.class)
+	@JsonView({Views.Employe.class, Views.Service.class})
 	private Set<Conge> conges;
 	
 	@OneToOne

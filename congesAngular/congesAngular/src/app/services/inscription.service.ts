@@ -22,8 +22,7 @@ export class InscriptionService {
 
 
   public inscription(login: string, password: string): Observable<void> {
-    console.log(login);
-    console.log(password);
+    this.initHeader();
     const LoginFormat = {
       login : login,
       password: password,
