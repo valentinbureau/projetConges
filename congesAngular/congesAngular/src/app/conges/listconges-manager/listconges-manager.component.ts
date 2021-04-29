@@ -32,7 +32,6 @@ export class ListcongesManagerComponent implements OnInit {
   ngOnInit(): void {
     this.employe = JSON.parse(localStorage.getItem("employe"));
     this.service = this.employe.service;
-    this.nom=this.employe.nom;
     this.serviceEmployesService.getService(this.service.id).subscribe((data) => {
       this.service = data;
       this.login = localStorage.getItem('login');
@@ -53,12 +52,7 @@ export class ListcongesManagerComponent implements OnInit {
       this.idArrayConge.push(id);
     }}
 
-  private list(e:Employe) {
-    this.congesService.findAllbyNomEmploye(e.nom).subscribe((data) => {
-      this.listConge= data;
-      });
 
-  }
 
   private getService(){
     console.log("hello");
@@ -81,14 +75,14 @@ export class ListcongesManagerComponent implements OnInit {
     }
 
 
-public Accept(c:Conge){
-   c.statut=EnumStatus.Acceptée;
-   this.congesService.update(c).subscribe((res) => {
+public Accept(conge:Conge){
+   conge.statut=EnumStatus.Acceptée;
+   this.congesService.update(conge).subscribe((res) => {
 });}
 
-public Decline(c:Conge){
-  c.statut=EnumStatus.Refusée;
-  this.congesService.update(c).subscribe((res) => {
+public Decline(conge:Conge){
+  conge.statut=EnumStatus.Refusée;
+  this.congesService.update(conge).subscribe((res) => {
 });
 
 

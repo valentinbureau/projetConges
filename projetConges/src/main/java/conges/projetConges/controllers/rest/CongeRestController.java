@@ -114,16 +114,5 @@ public class CongeRestController {
 		return new ResponseEntity<List<Conge>>(opt.get(), HttpStatus.OK);
 	}
 	
-	//GetConge By id_employe
-	@JsonView(Views.Conge.class)
-	@GetMapping("/employe/login/{nom}")
-	public ResponseEntity<List<Conge>> allCongesByNomEmploye(@PathVariable("nom") String nom){
-		
-		Optional<List<Conge>> opt = congeRepository.findCongesByNomEmploye(nom);
-		System.out.println(opt.get());
-		if(!opt.isPresent()) {
-			throw new CongeInvalidException();
-		}
-		return new ResponseEntity<List<Conge>>(opt.get(), HttpStatus.OK);
-	}
+	
 }

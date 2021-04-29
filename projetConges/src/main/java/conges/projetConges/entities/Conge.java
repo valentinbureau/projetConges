@@ -32,33 +32,33 @@ import conges.projetConges.validators.DateDansLeFutur;
 @SequenceGenerator(name = "seqConge", sequenceName = "seq_conge", initialValue = 110, allocationSize = 1)
 public class Conge {
 	
-	@JsonView({Views.Conge.class, Views.Employe.class})
+	@JsonView({Views.Conge.class, Views.Employe.class,Views.Service.class})
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seqConge")
 	private Integer id;
 	
-	@JsonView({Views.Conge.class, Views.Employe.class})
+	@JsonView({Views.Conge.class, Views.Employe.class,Views.Service.class})
 	@Enumerated(EnumType.STRING)
 	@Column(name = "typeConge")
 	private TypeConge typeConge;
 	
 	@NotNull
-	@JsonView({Views.Conge.class, Views.Employe.class})
+	@JsonView({Views.Conge.class, Views.Employe.class,Views.Service.class})
 	@DateDansLeFutur
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dateDebut")
 	private LocalDate dateDebut;
 	
 	@NotNull
-	@JsonView({Views.Conge.class, Views.Employe.class})
+	@JsonView({Views.Conge.class, Views.Employe.class,Views.Service.class})
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dateFin")
 	private LocalDate dateFin;
 	
-	@JsonView(Views.Conge.class)
+	@JsonView({Views.Conge.class,Views.Service.class})
 	@Column(name = "motif")
 	private String motif;
-	@JsonView({Views.Conge.class, Views.Employe.class})
+	@JsonView({Views.Conge.class, Views.Employe.class,Views.Service.class})
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "dateDemande")
 	private LocalDate dateDemande = LocalDate.now();
@@ -69,12 +69,12 @@ public class Conge {
 	@JsonView(Views.Conge.class)
 	private Employe demandeur;
 	
-	@JsonView(Views.Conge.class)
+	@JsonView({Views.Conge.class,Views.Service.class})
 	@Enumerated(EnumType.STRING)
 	@Column(name = "statut")
 	private Statut statut;
 	
-	@JsonView(Views.Conge.class)
+	@JsonView({Views.Conge.class,Views.Service.class})
 	@Column(name="raisonRefus")
 	private String RaisonRefus;
 	@Version
