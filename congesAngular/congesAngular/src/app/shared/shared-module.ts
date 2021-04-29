@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 const ANGULAR_MATERIAL = [
   MatButtonModule,
@@ -16,6 +18,8 @@ const ANGULAR_MATERIAL = [
   MatNativeDateModule,
   MatDatepickerModule,
   MatAutocompleteModule,
+  MatSelectModule,
+  MatCheckboxModule,
 ];
 
 @NgModule({

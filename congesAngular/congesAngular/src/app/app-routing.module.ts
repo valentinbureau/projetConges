@@ -9,7 +9,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: 'conge/manager', component: ListcongesManagerComponent},
   { path: 'conge/employe/:login', component: ListCongesComponent},
-  { path: 'demande/employe/:id/edit', component: DemandeComponent},
+  { path: 'demande/employe/:login', component: DemandeComponent},
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
