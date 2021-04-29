@@ -1,9 +1,11 @@
 import { CongesService } from './../Services/conges.service';
 import { Conge } from './../model/conge';
-import { Component, OnInit, NgModule } from '@angular/core';
+import { Component, OnInit, NgModule, ViewChild } from '@angular/core';
 import { EnumCongé } from '../model/enum-congé.enum';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DateAdapter } from '@angular/material/core';
+import { MatDatepicker } from '@angular/material/datepicker';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-demande',
@@ -11,6 +13,7 @@ import { DateAdapter } from '@angular/material/core';
   styleUrls: ['./demande.component.css'],
 })
 export class DemandeComponent implements OnInit {
+  @ViewChild(MatDatepicker) datepicker: MatDatepicker<Date>;
   conge: Conge = new Conge();
   public dateNow = Date.now();
   keys = Object.keys;
@@ -20,9 +23,10 @@ export class DemandeComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private CongesService: CongesService,
     private router: Router,
-    private dateAdapter: DateAdapter<Date>
+    private dateAdapter: DateAdapter<any>,
+    private datePipe: DatePipe
   ) {
-    this.dateAdapter.setLocale('en-GB'); //dd/MM/yyyy
+    this.dateAdapter.setLocale('fr-FR'); //dd/MM/yyyy
   }
 
   ngOnInit(): void {}
@@ -41,9 +45,9 @@ export class DemandeComponent implements OnInit {
         'Veuillez remplir tous les champs pour pouvoir soumettre votre demande'
       );
     } else {
-      this.conge.dateDebut = new Date(
-        this.conge.dateDebut.toLocaleDateString()
-      );
+      let dateDebut = this.conge.dateDebut.toLocaleDateString();
+      console.log(this.conge.dateDebut);
+      console.log(dateDebut);
       this.CongesService.insert(this.conge).subscribe((data) => {
         this.router.navigate(['/conge']);
       });

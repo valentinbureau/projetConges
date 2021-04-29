@@ -14,7 +14,6 @@ export class ServiceNameService {
   providedIn: 'root',
 })
 export class CongesService {
-
   private static URL = 'http://127.0.0.1:8080/vacances/api/conge';
   private httpHeaders: HttpHeaders;
   keys = Object.keys;
@@ -27,11 +26,7 @@ export class CongesService {
   private initHeader() {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-<<<<<<< HEAD
       // Authorization: `Basic ${localStorage.getItem('auth')},
-=======
-      'Authorization': `Basic ${localStorage.getItem('auth')}`,
->>>>>>> develop
     });
   }
 

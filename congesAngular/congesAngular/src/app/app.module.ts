@@ -9,6 +9,20 @@ import { LoginComponent } from './auth/login/login.component';
 import { HomeComponent } from './home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedModule } from './shared/shared-module';
+import { RouterModule } from '@angular/router';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { DatePipe } from '@angular/common';
+const MY_FORMATS = {
+  parse: {
+    dateInput: 'DD MMMM YYYY',
+  },
+  display: {
+    dateInput: 'DD MMMM YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [AppComponent, DemandeComponent, LoginComponent, HomeComponent],
@@ -19,8 +33,9 @@ import { SharedModule } from './shared/shared-module';
     ReactiveFormsModule,
     SharedModule,
     HttpClientModule,
+    RouterModule,
   ],
-  providers: [],
+  providers: [{ provide: MAT_DATE_LOCALE, useValue: MY_FORMATS }, DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

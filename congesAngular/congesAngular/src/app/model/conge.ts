@@ -1,18 +1,17 @@
-  import { EnumStatus } from './enum-status.enum';
-  import { EnumCongé } from './enum-congé.enum';
+import { EnumStatus } from './enum-status.enum';
+import { EnumCongé } from './enum-congé.enum';
 
-  export class Conge {
-
+export class Conge {
   public constructor(
-    private _id?:number,
-    private _dateDemande?:Date,
-    private _type?:EnumCongé,
-    private _dateDebut?:Date,
-    private _dateFin?:Date,
-    private _motif?:string,
-    private _statut?:EnumStatus,
-    private _raisonRefus?:Text,
-  ){}
+    private _id?: number,
+    private _dateDemande?: Date,
+    private _type?: EnumCongé,
+    private _dateDebut?: Date,
+    private _dateFin?: Date,
+    private _motif?: string,
+    private _statut?: EnumStatus,
+    private _raisonRefus?: Text
+  ) {}
 
   public get id(): number {
     return this._id;
@@ -59,7 +58,7 @@
   }
 
   public set motif(value: string) {
-    this._motif=value;
+    this._motif = value;
   }
 
   public get statut(): EnumStatus {
@@ -67,7 +66,7 @@
   }
 
   public set statut(value: EnumStatus) {
-    this._statut=value;
+    this._statut = value;
   }
 
   public get raisonRefus(): Text {
@@ -75,7 +74,6 @@
   }
 
   public set raisonRefus(value: Text) {
-    this._raisonRefus=value;
+    this._raisonRefus = value;
   }
-  }
-
+}
