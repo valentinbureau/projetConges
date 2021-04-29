@@ -1,0 +1,19 @@
+.card {
+  background-color: white;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 15px;
+}
+
+.connexion-button {
+  background-color: #f5b858;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 24px;
+  opacity: 1;
+}
+
+.connexion-button:hover {
+  opacity: 0.8;
+  transition: background-color 0.3s ease;
+}

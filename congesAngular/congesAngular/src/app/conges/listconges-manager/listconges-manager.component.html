@@ -1,1 +1,10 @@
-<p>listconges-manager works!</p>
+<h1 class="text-center">Service {{service.nom}} dirigé par {{service.manager.nom}} {{service.manager.prenom}}</h1>
+<div *ngFor="let employe of service.listeEmployes">
+  <div class="card">
+    <div class="d-flex justify-content-between">
+      <h2>{{employe.id}} {{employe.nom}} {{employe.prenom}}</h2>
+      <button class="btn connexion-button">Demande de congés</button>
+
+    </div>
+  </div>
+</div>

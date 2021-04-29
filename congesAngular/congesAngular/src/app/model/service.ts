@@ -5,6 +5,7 @@ export class Service {
     private _id?:number,
     private _nom?:string,
     private _manager?:Employe,
+    private _listeEmployes?: Employe[],
   ){}
 
   public get id(): number {
@@ -29,5 +30,13 @@ export class Service {
 
   public set manager(value: Employe) {
     this._manager= value;
+  }
+
+  public get listeEmployes(): Employe[] {
+    return this._listeEmployes;
+  }
+
+  public set listeEmploye(listeEmployes: Employe[]) {
+      this._listeEmployes = listeEmployes;
   }
 }

@@ -53,6 +53,17 @@ public class EmployeRestController {
 		return new ResponseEntity<List<Employe>>(employeRepository.findAll(),HttpStatus.OK);
 	}
 	
+	//findbyLogin
+	@GetMapping("/login/{login}")
+	@JsonView(Views.Employe.class)
+	public ResponseEntity<Employe> getByLogin(@PathVariable("login") String login){
+		Optional<Employe> opt = employeRepository.findByLogin(login);
+		if(!opt.isPresent()) {
+			throw new EmployeInvalidException();
+		}
+		return new ResponseEntity<Employe>(opt.get(), HttpStatus.OK);
+	}
+	
 	//Create
 	@PostMapping("")
 	@JsonView(Views.Employe.class)

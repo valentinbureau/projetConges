@@ -23,7 +23,12 @@ export class ServiceEmployesService {
     });
   }
 
-  public getEmployes(id: number): Observable<Service>{
+  public getEmployes(id: number): Observable<Employe[]>{
+    this.initHeader();
+    return this.http.get<Employe[]>(ServiceEmployesService.URL + '/' + id, { headers: this.httpHeaders, });
+  };
+
+  public getService(id: number): Observable<Service>{
     this.initHeader();
     return this.http.get<Service>(ServiceEmployesService.URL + '/' + id, { headers: this.httpHeaders, });
   };

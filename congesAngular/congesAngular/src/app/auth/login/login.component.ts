@@ -25,6 +25,9 @@ export class LoginComponent implements OnInit {
           'auth', btoa(`${this.login.login}:${this.login.password}`)
         );
         localStorage.setItem('login', this.login.login);
+        this.AuthenticationService.getEmploye(this.login).subscribe(data => {
+          localStorage.setItem("employe", JSON.stringify(data));
+        })
       },
       (error) => {
         this.message = "Compte inconnu ou mauvais mot de passe"
