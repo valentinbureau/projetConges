@@ -52,6 +52,7 @@ public class Employe {
 	
 	@OneToOne
 	@JoinColumn(name = "id_login", foreignKey = @ForeignKey(name = "employe_id_login_fk"))
+	@JsonView({Views.Employe.class})
 	private Login login;
 	@Version
 	private int version;

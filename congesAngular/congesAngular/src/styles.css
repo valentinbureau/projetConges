@@ -10,7 +10,10 @@ body {
   background-color: #f4f4f4;
   font-size: 1rem;
   font-weight: 400;
-  position: relative;
+  min-height: 100vh;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
 }
 
 footer {
@@ -18,13 +21,10 @@ footer {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100vw;
-  padding: 0 50px;
+  min-height: 100px;
   height: 100px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
+  width: 100%;
+  margin-top: auto;
 }
 
 html,

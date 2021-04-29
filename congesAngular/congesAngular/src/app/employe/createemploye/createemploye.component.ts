@@ -31,6 +31,11 @@ export class CreateemployeComponent implements OnInit {
       [Validators.required],
 
     );
+    this.ServiceCtrl = this.fb.control(
+      '',
+      [Validators.required],
+
+    );
     this.form = this.fb.group({
       nom: this.nomCtrl,
       prenom: this.prenomCtrl,
@@ -48,11 +53,12 @@ export class CreateemployeComponent implements OnInit {
 
   send(){
     console.log('je passe ici');
-    console.log(this.ServiceCtrl);
+    console.log(this.ServiceCtrl.value);
     this.InscriptionService.idLogin(localStorage.getItem("loginTemporaire")).subscribe(data => {
-      this.idLogin = data.id,
-      console.log(data.id);
+      this.idLogin = data.id
     })
-    this.EmployeService.creationEmploye(this.nomCtrl.value, this.prenomCtrl.value, 112, this.idLogin)
+    this.EmployeService.creationEmploye(this.nomCtrl.value, this.prenomCtrl.value, this.ServiceCtrl.value, this.idLogin).subscribe((res) => {
+      this.route.navigate(['/conge/manager']);
+    })
   }
 }

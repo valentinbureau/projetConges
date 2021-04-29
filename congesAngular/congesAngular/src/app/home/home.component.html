@@ -1,39 +1,29 @@
 <mat-card>
-  Gestion de congés
   <nav>
     <div class="navbar">
-      <div>
-        <button mat-raised-button color="accent">
-          <a class="btn btn-link" routerLink="/login" routerLinkActive="active"
-            >Se connecter</a
-          >
-        </button>
-        <button mat-raised-button color="accent">
-          <a
-            class="btn btn-link"
-            color="white"
-            routerLink="/demande/employe/{{ login }}"
-            routerLinkActive="active"
-            >Demander un congé</a
-          >
-        </button>
-        <button mat-raised-button color="accent">
-          <a
-            class="btn btn-link"
-            routerLink="/inscription"
-            routerLinkActive="active"
-            >Creation employé(admin)</a
-          >
-        </button>
+      <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sopra_Steria_logo.svg/1280px-Sopra_Steria_logo.svg.png" alt="" class="logo"></div>
+      <div class="buttons-navbar">
+        <a routerLink="/login" routerLinkActive="active"
+          >SE CONNECTER</a
+        >
 
-        <button mat-raised-button color="accent">
-          <a
-            class="btn btn-link"
-            routerLink="/conge/manager"
-            routerLinkActive="active"
-            >Gerer demandes de congés(manager)</a
-          >
-        </button>
+        <a
+          routerLink="/demande/employe/{{ login }}"
+          routerLinkActive="active"
+          >DEMANDER UN CONGE</a
+        >
+
+        <a
+          routerLink="/inscription"
+          routerLinkActive="active"
+          >CREATION EMPLOYE</a
+        >
+
+        <a
+          routerLink="/conge/manager"
+          routerLinkActive="active"
+          >GERER DEMANDES CONGES</a
+        >
       </div>
 
       <div *ngIf="login">
