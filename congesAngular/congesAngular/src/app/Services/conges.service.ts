@@ -17,6 +17,7 @@ export class ServiceNameService {
   providedIn: 'root'
 })
 export class CongesService {
+
   private static URL = 'http://127.0.0.1:8080/vacances/api/conge';
   private httpHeaders : HttpHeaders;
   keys = Object.keys;
@@ -31,7 +32,7 @@ export class CongesService {
   private initHeader() {
     this.httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
-     // Authorization: `Basic ${localStorage.getItem('auth')},
+      'Authorization': `Basic ${localStorage.getItem('auth')}`,
     });
   }
 
@@ -79,6 +80,13 @@ export class CongesService {
     };
     console.log(conge.dateDebut);
     return this.http.post<Conge>(CongesService.URL, congeFormate, {
+      headers: this.httpHeaders,
+    });
+  }
+
+  public findAllbyLogin(login: string): Observable<Conge[]> {
+    this.initHeader();
+    return this.http.get<Conge[]>(CongesService.URL + '/employe/' + login, {
       headers: this.httpHeaders,
     });
   }

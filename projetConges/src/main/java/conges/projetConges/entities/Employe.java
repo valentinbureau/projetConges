@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
@@ -49,6 +50,9 @@ public class Employe {
 	@JsonView(Views.Employe.class)
 	private Set<Conge> conges;
 	
+	@OneToOne
+	@JoinColumn(name = "id_login", foreignKey = @ForeignKey(name = "employe_id_login_fk"))
+	private Login login;
 	@Version
 	private int version;
 
