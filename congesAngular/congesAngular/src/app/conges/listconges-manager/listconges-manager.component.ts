@@ -14,6 +14,8 @@ export class ListcongesManagerComponent implements OnInit {
   conge: Conge[];
   congePresent: string;
   employe: Employe;
+  idArrayConge : number[];
+  idArrayDemande : number[];
 
   constructor(private serviceEmployesService : ServiceEmployesService) { }
 
@@ -23,6 +25,30 @@ export class ListcongesManagerComponent implements OnInit {
     this.serviceEmployesService.getService(this.service.id).subscribe((data) => {
       this.service = data;
     });
+    this.idArrayConge = [];
+    this.idArrayDemande = [];
+  }
+
+  public clickConge(id: number) {
+    if (this.idArrayConge.includes(id)) {
+      this.idArrayConge = this.idArrayConge.filter( number => id != number );
+    } else {
+      if (this.idArrayDemande.includes(id)){
+        this.idArrayDemande = this.idArrayDemande.filter( number => id != number );
+      }
+      this.idArrayConge.push(id);
+    }
+  }
+
+  public clickDemande(id: number) {
+    if (this.idArrayDemande.includes(id)) {
+      this.idArrayDemande = this.idArrayDemande.filter( number => id != number );
+    } else {
+      if (this.idArrayConge.includes(id)){
+        this.idArrayConge = this.idArrayConge.filter( number => id != number );
+      }
+      this.idArrayDemande.push(id);
+    }
   }
 
   private getService(){

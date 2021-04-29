@@ -1,15 +1,19 @@
-<h1 class="text-center m-3">Service {{service.nom}} dirigé par {{service.manager.nom}} {{service.manager.prenom}}</h1>
-<div *ngFor="let employe of service.listeEmployes">
-  <div class="card">
-    <div class="d-flex justify-content-between">
-      <div class="info-employe">
-        <img class="avatar-employe mr-3" src="https://img2.freepng.fr/20180627/wio/kisspng-computer-icons-user-profile-avatar-jain-icon-5b332c5add9336.0201786915300803469076.jpg" alt="">
-        <h2>{{employe.nom}} {{employe.prenom}}</h2>
+<div class="container">
+  <h1 class="text-center m-3">Service {{service.nom}} dirigé par {{service.manager.nom}} {{service.manager.prenom}}</h1>
+  <div *ngFor="let employe of service.listeEmployes">
+    <div class="card">
+      <div class="d-flex justify-content-between">
+        <div class="info-employe">
+          <img class="avatar-employe mr-3" src="https://img2.freepng.fr/20180627/wio/kisspng-computer-icons-user-profile-avatar-jain-icon-5b332c5add9336.0201786915300803469076.jpg" alt="">
+          <h2>{{employe.nom}} {{employe.prenom}}</h2>
+        </div>
+        <div>
+          <button class="btn connexion-button mr-2" (click)='clickDemande(employe.id)'>Demande de congés</button>
+          <button class="btn conge-button" (click)='clickConge(employe.id)'>Congés</button>
+        </div>
       </div>
-      <div>
-        <button class="btn connexion-button mr-2">Demande de congés</button>
-        <button class="btn conge-button">Congés</button>
-      </div>
+      <div *ngIf="idArrayDemande.includes(employe.id)">TEST</div>
+      <div *ngIf="idArrayConge.includes(employe.id)">TEST</div>
     </div>
   </div>
 </div>
