@@ -12,8 +12,9 @@ import { CongesService } from 'src/app/Services/conges.service';
 export class ListCongesComponent implements OnInit {
   //conge : Conge = new Conge();
   conges: Conge[];
+  congesFiltres: Conge[] = [];
   login: string;
-
+  filter = { acceptee: true, enCours: false, refusee: false }
 
   conge = new FormControl();
 
@@ -32,16 +33,26 @@ export class ListCongesComponent implements OnInit {
   private list() {
     console.log(this.login);
     this.congeService.findAllbyLogin(this.login).subscribe((data) => {
-      /*data.filter(data=> {
-        console.log(this.statutConges);
-        if (this.statutConges.includes(data.statut)){
-          //console.log(data);
-        }
-      });*/
       this.conges=data;
+      this.congesFiltres=this.conges;
     });
   }
 
+  filterChange() {
+
+    this.congesFiltres = this.conges.filter(c => {
+      return(( c.statut === EnumStatus.Acceptée && this.filter.acceptee)
+      || (c.statut === EnumStatus['En cours de traitement'] && this.filter.enCours)
+      || (c.statut === EnumStatus.Refusée && this.filter.refusee))
+
+
+        /*console.log('enumAcceptee',EnumStatus['En cours de traitement']);
+        console.log('statut',c.statut);
+        console.log(c);*/
+    });
+    console.log("c'est filtré?", this.congesFiltres);
+    console.log(this.filter.acceptee)
+  }
   /*add(statutconge: string) {
     this.statutDemande.push(statutconge);
     this.ngOnInit();
