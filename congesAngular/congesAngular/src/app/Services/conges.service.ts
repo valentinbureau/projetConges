@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { EnumCongé } from '../model/enum-congé.enum';
+import { DatePipe } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class ServiceNameService {
@@ -19,7 +20,7 @@ export class CongesService {
   keys = Object.keys;
   statut = EnumStatus;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private datePipe: DatePipe) {
     this.initHeader();
   }
 
@@ -62,13 +63,14 @@ export class CongesService {
     this.initHeader();
     const congeFormate = {
       typeConge: conge.type,
-      dateDebut: conge.dateDebut.toLocaleDateString(),
-      dateFin: conge.dateFin.toLocaleDateString(),
+      dateDebut: this.datePipe.transform(conge.dateDebut, 'yyyy-MM-dd'),
+      dateFin: this.datePipe.transform(conge.dateFin, 'yyyy-MM-dd'),
       motif: conge.motif,
-      dateDemande: conge.dateDemande.toLocaleDateString(),
+      dateDemande: this.datePipe.transform(conge.dateDemande, 'yyyy-MM-dd'),
       statut: EnumStatus['En cours de traitement'],
+      demandeur: JSON.parse(localStorage.getItem('employe')),
     };
-    //console.log(conge.dateDebut);
+    console.log(congeFormate);
     return this.http.post<Conge>(CongesService.URL, congeFormate, {
       headers: this.httpHeaders,
     });

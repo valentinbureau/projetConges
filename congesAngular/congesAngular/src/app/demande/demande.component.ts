@@ -6,6 +6,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { DateAdapter } from '@angular/material/core';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { DatePipe } from '@angular/common';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-demande',
@@ -18,6 +19,7 @@ export class DemandeComponent implements OnInit {
   public dateNow = Date.now();
   keys = Object.keys;
   typeConges = EnumCongé;
+  date1 = new FormControl(this.dateNow);
 
   constructor(
     private activatedRoute: ActivatedRoute,
