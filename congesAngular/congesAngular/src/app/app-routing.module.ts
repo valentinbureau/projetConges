@@ -1,3 +1,4 @@
+import { CreateemployeComponent } from './employe/createemploye/createemploye.component';
 import { CreateloginComponent } from './auth/createlogin/createlogin.component';
 import { ListcongesManagerComponent } from './conges/listconges-manager/listconges-manager.component';
 import { NgModule } from '@angular/core';
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'home', component: HomeComponent},
   { path: 'inscription', component: CreateloginComponent},
+  { path: 'inscription/employe', component: CreateemployeComponent},
   { path: '', redirectTo: '/home', pathMatch: 'full'}
 ];
 

@@ -43,8 +43,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
+
   isAdmin(){
     return (this.role===EnumRole.ROLE_ADMIN)
   }
 
+
+  click(){
+    localStorage.clear();
+    this.ngOnInit();
+  }
 }

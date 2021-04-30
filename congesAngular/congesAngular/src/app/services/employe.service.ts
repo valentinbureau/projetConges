@@ -26,7 +26,7 @@ export class EmployeService {
       nom : nom,
       prenom: prenom,
       service: { id: service_id },
-      login: { id: login_id },
+      login: { id : login_id }
     }
     return this.http.post<void>(
       'http://localhost:8080/vacances/api/employe',

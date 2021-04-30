@@ -36,9 +36,17 @@ export class ServiceEmployesService {
     });
   }
 
+
   public getManagerLogin(id: number){
     this.initHeader();
     return this.http.get<Employe>(ServiceEmployesService.URL + '/manager/' + id, {
+      headers: this.httpHeaders,
+    });
+  }
+  public getAllService(): Observable<Service[]> {
+    this.initHeader();
+    return this.http.get<Service[]>(ServiceEmployesService.URL, {
+
       headers: this.httpHeaders,
     });
   }

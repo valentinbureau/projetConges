@@ -69,8 +69,10 @@ export class CreateloginComponent implements OnInit {
   }
 
   send(){
+    localStorage.setItem("loginTemporaire", this.loginCtrl.value);
+    console.log(localStorage.getItem("loginTemporaire"));
     this.InscriptionService.inscription(this.loginCtrl.value, this.passwordCtrl.value).subscribe((res) => {
-      this.route.navigate(['/login']);
+      this.route.navigate(['/inscription/employe']);
     })
   }
 
