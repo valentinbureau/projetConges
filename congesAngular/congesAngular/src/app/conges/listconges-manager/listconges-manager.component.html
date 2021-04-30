@@ -35,19 +35,14 @@
           <td>{{conge.typeConge}}</td>
           <td>{{conge.statut}}</td>
           <td>{{conge.motif}}</td>
-          <td>
-            <form>
-            <label>Refus?</label>
-            <input type="text" name="input-{{conge}}" [(ngModel)]="canRefuse"/>
-            </form>
-          </td>
+
 
           <td>
           <button class="btn connexion-button mr-2"><a
             (click)="Accept(conge)"
             >Accepter</a
           ></button>&nbsp;
-          <button class="btn delete-button mr-2" [disabled]="!canRefuse">
+          <button class="btn delete-button mr-2">
           <a
             (click)="Decline(conge)"
             >Refuser</a
