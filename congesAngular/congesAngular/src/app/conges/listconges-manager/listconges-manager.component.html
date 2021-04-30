@@ -16,7 +16,6 @@
         <div *ngFor="let conge of employe.conges">
         </div>
       </div>
-
       <div *ngIf="idArrayConge.includes(employe.id)">
         <table class="table">
           <tr>
@@ -26,6 +25,7 @@
             <th>type</th>
             <th>statut</th>
             <th>motif</th>
+            <th> Motif Refus </th>
           </tr>
           <tr *ngFor="let conge of employe.conges">
 
@@ -35,20 +35,26 @@
           <td>{{conge.typeConge}}</td>
           <td>{{conge.statut}}</td>
           <td>{{conge.motif}}</td>
+          <td>
+            <form>
+            <label>Refus?</label>
+            <input type="text" name="input-{{conge}}" [(ngModel)]="canRefuse"/>
+            </form>
+          </td>
 
-            <td>
+          <td>
           <button class="btn connexion-button mr-2"><a
             (click)="Accept(conge)"
             >Accepter</a
           ></button>&nbsp;
-          <button class="btn delete-button mr-2">
+          <button class="btn delete-button mr-2" [disabled]="!canRefuse">
           <a
             (click)="Decline(conge)"
             >Refuser</a
           ></button></td></tr>
 
-      </table>
-        </div>
+        </table>
+      </div>
      </div>
     </div>
   </div>

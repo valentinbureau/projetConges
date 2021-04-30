@@ -8,7 +8,7 @@ import { ServiceEmployesService } from './../../services/service-employes.servic
 import { Component, OnInit, Inject } from '@angular/core';
 import { Service } from 'src/app/model/service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-
+import {MatLabel } from '@angular/material/form-field';
 
 export interface DialogData {
 
