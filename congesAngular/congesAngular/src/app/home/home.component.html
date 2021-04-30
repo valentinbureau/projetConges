@@ -1,33 +1,36 @@
 <mat-card>
   <div class="navbar">
 
-    <button mat-raised-button color="accent" *ngIf="isAuth== true">
-      <a
-        class="btn btn-link"
-        color="white"
-        routerLink="/conge/employe/{{ login }}"
-        routerLinkActive="active"
-        >Mes congés</a
-      >
-    </button>
-    <button mat-raised-button color="accent" *ngIf="isAdmin()" >
-      <a
-        class="btn btn-link"
-        routerLink="/inscription"
-        routerLinkActive="active"
-        >Creation employé</a
-      >
-    </button>
+    <div><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/Sopra_Steria_logo.svg/1280px-Sopra_Steria_logo.svg.png" alt="" class="logo"></div>
 
-    <button mat-raised-button color="accent" *ngIf="isManager">
-      <a
-        class="btn btn-link"
-        routerLink="/conge/manager"
-        routerLinkActive="active"
-        >Gerer demandes de congés(manager)</a
-      >
-    </button>
+    <div>
+      <button mat-raised-button color="accent" *ngIf="isAuth== true">
+        <a
+          class="btn btn-link"
+          color="white"
+          routerLink="/conge/employe/{{ login }}"
+          routerLinkActive="active"
+          >Mes congés</a
+        >
+      </button>
+      <button mat-raised-button color="accent" *ngIf="isAdmin()" >
+        <a
+          class="btn btn-link"
+          routerLink="/inscription"
+          routerLinkActive="active"
+          >Creation employé</a
+        >
+      </button>
 
+      <button mat-raised-button color="accent" *ngIf="isManager">
+        <a
+          class="btn btn-link"
+          routerLink="/conge/manager"
+          routerLinkActive="active"
+          >Gerer demandes de congés(manager)</a
+        >
+      </button>
+    </div>
 
       <div *ngIf="login">
         <img mat-button [matMenuTriggerFor]="menu" class="img-navbar" src="https://img2.freepng.fr/20180627/wio/kisspng-computer-icons-user-profile-avatar-jain-icon-5b332c5add9336.0201786915300803469076.jpg" alt="">
