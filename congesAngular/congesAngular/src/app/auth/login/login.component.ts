@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Login } from 'src/app/model/login';
 import { Employe } from 'src/app/model/employe';
 import { EnumRole } from 'src/app/model/enum-role.enum';
+import { HomeComponent } from 'src/app/home/home.component';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,8 @@ export class LoginComponent implements OnInit {
     private AuthenticationService: AuthenticationService,
     private router: Router,
     private roleLoginService: RoleLoginService,
-    private serviceEmployeService: ServiceEmployesService
+    private serviceEmployeService: ServiceEmployesService,
+    private homeComponent : HomeComponent
   ) {}
 
   ngOnInit(): void {
@@ -57,10 +59,10 @@ export class LoginComponent implements OnInit {
           console.log(localStorage.getItem('employe'));
         });
         if (this.isManager){
-          this.router.navigate(['/conge/manager/'])
+          this.router.navigate(['/conge/manager/']);
         }
         else if (this.isAdmin()){
-
+          this.router.navigate(['/inscription'])
         }
         else {
           this.router.navigate(['/conge/employe/', this.login.login])

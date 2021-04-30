@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Conge } from 'src/app/model/conge';
 import { EnumStatus } from 'src/app/model/enum-status.enum';
 import { CongesService } from 'src/app/Services/conges.service';
@@ -19,6 +20,7 @@ export class ListCongesComponent implements OnInit {
 
   constructor(
     private congeService: CongesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,5 +50,8 @@ export class ListCongesComponent implements OnInit {
     console.log(this.filter.acceptee)
   }
 
+  click( ){
+    this.router.navigate(['/demande/employe/', this.login])
+  }
 
 }
