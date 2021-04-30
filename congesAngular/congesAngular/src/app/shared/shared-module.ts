@@ -27,7 +27,7 @@ const ANGULAR_MATERIAL = [
   MatCheckboxModule,
   MatDialogModule,
   MatMenuModule,
-
+]
 @NgModule({
   declarations: [],
   imports: [...ANGULAR_MATERIAL, FormsModule],

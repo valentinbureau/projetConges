@@ -10,10 +10,7 @@ import { Service } from 'src/app/model/service';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {MatLabel } from '@angular/material/form-field';
 
-export interface DialogData {
 
-  refus: string;
-}
 
 @Component({
   selector: 'app-listconges-manager',
@@ -31,6 +28,8 @@ export class ListcongesManagerComponent implements OnInit {
   idArrayDemande : number[];
   login: string;
   nom : string;
+
+  canRefuse: string;
 
   constructor(private serviceEmployesService : ServiceEmployesService,
     private congesService : CongesService,) { }
@@ -97,51 +96,5 @@ public Decline(conge:Conge){
 
 
 }
-
-
-/**
- * @title Dialog Overview
- */
-@Component({
-  selector: 'dialog-overview-example',
-  templateUrl: 'dialog-overview-example.html',
-})
-export class DialogOverviewExample {
-
-
-  refus: string;
-
-  constructor(public dialog: MatDialog) {}
-
-  openDialog(): void {
-    const dialogRef = this.dialog.open(DialogOverviewExampleDialog, {
-      width: '250px',
-      data: {refus: this.refus}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.refus = result;
-    });
-  }
-
-}
-
-@Component({
-  selector: 'dialog-overview-example-dialog',
-  templateUrl: 'dialog-overview-example-dialog.html',
-})
-export class DialogOverviewExampleDialog {
-
-  constructor(
-    public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
-}
-
 
 
