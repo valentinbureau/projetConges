@@ -6,7 +6,7 @@
     <div>
       <button mat-raised-button color="accent" *ngIf="isAuth== true">
         <a
-          class="btn btn-link"
+          class="btn btn-link md-3"
           color="white"
           routerLink="/conge/employe/{{ login }}"
           routerLinkActive="active"
@@ -15,7 +15,7 @@
       </button>
       <button mat-raised-button color="accent" *ngIf="isAdmin()" >
         <a
-          class="btn btn-link"
+          class="btn btn-link md-3"
           routerLink="/inscription"
           routerLinkActive="active"
           >Creation employé</a
@@ -24,7 +24,7 @@
 
       <button mat-raised-button color="accent" *ngIf="isManager">
         <a
-          class="btn btn-link"
+          class="btn btn-link md-3"
           routerLink="/conge/manager"
           routerLinkActive="active"
           >Gerer demandes de congés(manager)</a
