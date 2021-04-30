@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { Employe } from '../model/employe';
 import { Observable } from 'rxjs';
 import { ServiceEmployesService } from '../services/service-employes.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -21,7 +22,8 @@ export class HomeComponent implements OnInit {
   isAuth: boolean = false;
   isManager: boolean;
   constructor(private roleLoginService: RoleLoginService,
-    private serviceEmployeService: ServiceEmployesService) {}
+    private serviceEmployeService: ServiceEmployesService,
+    private router: Router) {}
 
   ngOnInit(): void {
     this.login = localStorage.getItem('login')
@@ -37,7 +39,7 @@ export class HomeComponent implements OnInit {
       console.log(this.isManager);
     });
 
-    if (localStorage.getItem('auth')!== 'dG90bzp0b3Rv'){
+    if (localStorage.getItem('auth')!== ''){
       this.isAuth =true;
       console.log(localStorage.getItem('auth'));
     }
@@ -52,5 +54,6 @@ export class HomeComponent implements OnInit {
   click(){
     localStorage.clear();
     this.ngOnInit();
+    this.router.navigate(['/login'])
   }
 }
